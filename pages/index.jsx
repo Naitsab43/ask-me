@@ -27,7 +27,7 @@ export default function Home() {
 
         <section className={styles.info}>
           <h2 className={`${styles.info__title} animate__animated animate__fadeIn`}>¿Que es esto?</h2>
-          <p className={`${styles.info__text} animate__animated animate__fadeIn`}>Esta es una aplicacion de preguntas y respuestas (Q&A) anonimas. Crea un perfil para crear un Q&A o ingresa a un Q&A para hacer preguntas de forma anonima </p>
+          <p className={`${styles.info__text} animate__animated animate__fadeIn`}>Esta es una aplicacion de preguntas y respuestas (Q&A) anonimas. Crea un perfil para crear un Q&A o ingresa a un Q&A para hacer preguntas de forma anonima.</p>
         </section>
 
 

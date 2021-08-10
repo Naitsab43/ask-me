@@ -1,0 +1,83 @@
+
+.my-info__title-anom{
+  color: white;
+  text-align: center;
+}
+
+.my-info-anom{
+  display: flex;
+  border: 1px rgb(226, 226, 226) solid;
+  background-color: #3A3A3A;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px auto ;
+  padding: 15px 0;
+  width: 90%;
+}
+
+.my-info__text-anom{
+  color: white;
+  margin: 5px 10px 0;
+  padding-bottom: 18px;
+  text-align: justify;
+}
+
+
+@media screen and (min-width: 576px) {
+
+  .my-info-anom{
+    display: flex;
+    border: 1px rgb(226, 226, 226) solid;
+    background-color: #3A3A3A;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px 0;
+    width: 90%;
+    max-width: 550px;
+  }
+
+  .my-info__title-anom{
+    text-align: center;
+    font-size: 35px;
+  }
+    
+  .my-info__text-anom{
+    color: white;
+    margin: 5px 20px 0;
+    font-size: 22px;
+    padding-bottom: 18px;
+    text-align: justify;
+  }
+  
+  
+}
+
+@media screen and (min-width: 825px) {
+
+  .my-info-anom{
+    padding: 0 0 25px;
+    max-width: 700px;
+  }
+
+
+}
+
+@media screen and (min-width: 1200px) {
+
+  .union-info-input_button{
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
+  
+  .my-info__text-anom{
+    color: white;
+    margin: 5px 20px 0;
+    font-size: 22px;
+    text-align: justify;
+  }
+  
+  .my-info-anom{
+    width: 80%;
+  }
+
+}

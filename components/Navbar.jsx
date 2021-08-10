@@ -1,11 +1,11 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useNavColor } from '../hooks/useNavColor'
 import styles from '../styles/navbar.module.css'
 
 
 const Navbar = () => {
 
-  const { navRef, changeNavColor } = useNavColor();
+  const { navRef, titleNav, changeNavColor } = useNavColor();
 
   useEffect(() => {
     
@@ -15,7 +15,7 @@ const Navbar = () => {
 
   return (
     <nav ref={navRef} className={styles.nav}>
-      <span className={styles.nav__text}>Q & A</span>
+      <span className={styles.nav__text}>{ titleNav }</span>
     </nav>
   )
 }

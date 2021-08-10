@@ -1,0 +1,56 @@
+
+.form{
+  min-width: 330px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 8px 0;
+  width: 100%;
+}
+
+
+@media screen and (min-width: 576px) {
+
+  .content-input {
+    max-width: 550px;
+    height: 95px;
+  }
+
+  .form{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px 0;
+    width: 100%;
+  }
+
+}
+
+@media screen and (min-width: 825px) {
+
+  .form{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 15px 0;
+    width: 100%;
+  }
+  
+}
+
+@media screen and (min-width: 1200px) {
+
+
+  .form{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px 0;
+    width: 100%;
+  }
+
+}

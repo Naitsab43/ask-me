@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { useRouter } from "next/router";
 
 export const useNavColor = () => {
 
@@ -24,9 +25,33 @@ export const useNavColor = () => {
 
   }
 
+  let titleNav = "";
+  const { pathname } = useRouter()
+
+  switch(pathname){
+
+    case "/create":
+      titleNav = "Crear un Q&A"
+      break;
+  
+    case "/login":
+      titleNav = "Ingresar a mi Q&A"
+      break;
+
+    case "/anonymous":
+      titleNav = "Ingresar como anónimo"
+      break;
+
+    default: 
+      titleNav = "Q&A"
+      break;
+
+  }
+
   return {
     navRef,
-    changeNavColor
+    titleNav,
+    changeNavColor,
   }
 
 

@@ -3,7 +3,7 @@
   justify-content: center;
   display: flex;
   min-height: 100px;
-  height: 10vw;
+  height: 9vw;
   max-height: 350px;
   min-width: 330px;
   top: 0;
@@ -29,7 +29,7 @@
 @media screen and (min-width: 825px) {
 
   .nav__text{
-    font-size: 40px;
+    font-size: 38px;
   }
 
 }
