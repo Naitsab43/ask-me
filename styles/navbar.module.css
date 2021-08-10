@@ -1,0 +1,43 @@
+.nav{
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  min-height: 100px;
+  height: 10vw;
+  max-height: 350px;
+  min-width: 330px;
+  top: 0;
+  width: 100%;
+
+}
+
+.nav__text{
+  user-select: none;
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+@media screen and (min-width: 576px) {
+
+  .nav__text{
+    font-size: 35px;
+  }
+
+}
+
+@media screen and (min-width: 825px) {
+
+  .nav__text{
+    font-size: 40px;
+  }
+
+}
+
+@media screen and (min-width: 1200px) {
+
+  .nav__text{
+    font-size: 45px;
+  }
+
+}
