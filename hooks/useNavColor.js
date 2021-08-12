@@ -10,7 +10,7 @@ export const useNavColor = () => {
     let colors = [
       { color: "#a70404", shadow: "#680000" },
       { color: "#4148E6", shadow: "#222E99" },
-      { color: "#48FD4F", shadow: "#1B962F" },
+      { color: "#82cc5e", shadow: "#5b8f41" },
       { color: "#DA6946", shadow: "#8E442C" },
       { color: "#A01CAB", shadow: "#71238C" },
       { color: "#19AD78", shadow: "#1C7253" },
@@ -26,9 +26,15 @@ export const useNavColor = () => {
   }
 
   let titleNav = "";
+  let visible = true;
+
   const { pathname } = useRouter()
 
   switch(pathname){
+
+    case "/":
+      titleNav = "Q&A"
+      break;
 
     case "/create":
       titleNav = "Crear un Q&A"
@@ -42,8 +48,12 @@ export const useNavColor = () => {
       titleNav = "Ingresar como anónimo"
       break;
 
+    case "/profile":
+      titleNav = "Mi Perfil"
+      break;
+
     default: 
-      titleNav = "Q&A"
+      visible = false;
       break;
 
   }
@@ -51,6 +61,7 @@ export const useNavColor = () => {
   return {
     navRef,
     titleNav,
+    visible,
     changeNavColor,
   }
 

@@ -5,18 +5,31 @@ import styles from '../styles/navbar.module.css'
 
 const Navbar = () => {
 
-  const { navRef, titleNav, changeNavColor } = useNavColor();
+  const { navRef, titleNav, visible, changeNavColor } = useNavColor();
 
   useEffect(() => {
     
-    changeNavColor()
-
+    visible && changeNavColor()
+    
   }, [])
 
+
   return (
-    <nav ref={navRef} className={styles.nav}>
-      <span className={styles.nav__text}>{ titleNav }</span>
-    </nav>
+    
+    <>  
+
+      {
+
+        visible && (
+          <nav ref={navRef} className={styles.nav}>
+            <span className={styles.nav__text}>{ titleNav }</span>
+          </nav>
+        )
+
+      }
+
+    </>
+
   )
 }
 
