@@ -64,20 +64,5 @@
 
 @media screen and (min-width: 1200px) {
 
-  .union-info-input_button{
-    display: grid;
-    grid-template-columns: 50% 50%;
-  }
-  
-  .my-info__text-anom{
-    color: white;
-    margin: 5px 20px 0;
-    font-size: 22px;
-    text-align: justify;
-  }
-  
-  .my-info-anom{
-    width: 80%;
-  }
 
 }

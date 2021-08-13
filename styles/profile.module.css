@@ -1,106 +1,73 @@
 
-.my-info{
+.profile{
   display: flex;
   border: 1px rgb(226, 226, 226) solid;
   background-color: #3A3A3A;
   flex-direction: column;
-  height: 180px;
-  justify-content: center;
+  justify-content: space-around;
+  align-items: center;
   margin: 20px auto;
   padding: 15px 0;
   width: 95%;
   min-width: 330px;
 }
 
+.profile__image {
+  border-radius: 200px;
+  height: 120px;
+  width: 120px;
+  margin-bottom: 10px;
+}
 
-.my-info__title{
+.profile__title{
   border-bottom: 6px #BDBDBD solid;
   color: white;
-  font-size: 28px;
-  margin: 10px auto 0;
+  margin: 0 5px;
+  font-size: 46px;
   padding-bottom: 5px;
-  text-align: center;
-  width: 75%;
-  
+  text-align: center; 
+  max-width: 320px;
+  word-wrap: break-word;
+
 }
 
-.my-info__text{
-  color: white;
-  font-size: 18px;
-  margin: 5px auto 20px;
-  text-align: justify;
-}
-
-.copy{
-  align-items: center;
-  background-color: rgba(64, 175, 64, 0.993);
+.profile-info-container {
   display: flex;
-  height: 80px;
-  justify-content: center;
-  position: absolute;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
 }
 
-.copy__text{
-  color: #ffffff;
-  font-weight: 700;
-  text-align: center;
+.profile__user{
+  margin-top: 5px;
+  color: white;
+  font-size: 20px;
+  word-wrap: break-word;
+  max-width: 320px;
 }
 
-.disable{
-  display: none;
-}
 
-.form__button--mini{
-  font-weight: 700;
-  font-size: 14px;
-  height: 40px;
-  margin: 5px auto;
-  width: 35%;
-}
-
-/* ----------------------- Questions not answered ---------------------------- */
-
-.bg{
+.question-bg{
   border-radius: 10px;
   background-color: #C4C4C4;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 10px 10px;
-  padding-bottom: 15px;
+  align-items: center;
+  margin: 0 auto 30px;
+  padding: 15px 0;
+  width: 95%;
 }
 
-.form__input--answer{
-  border-radius: 3px;
-  height: 50px;
-  margin-top: 0; /* Sobre-escribir */
+
+.question-bg__author{
   width: 90%;
-}
-
-.button-answer{
-  border: none;
-  border-radius: 47px;
-  color: white;
-  height: 40px;
-  margin-top: 20px;
-  width: 60%;
+  text-align: start;
+  margin: 12px auto 0;
 }
 
 
-.bg__question__anom{
-  margin: 10px 0 0 13px
-}
-
-
-.bg__question__span{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  
-}
-
-.bg__question__text{
+.question-bg__question{
   border-radius: 3px;
   background-color: rgb(236, 236, 240);
   box-shadow: 0px 4px 0px #8F8F8F;
@@ -109,30 +76,19 @@
   padding: 16px 7px;
   text-align: justify;
   width: 90%;
+  word-wrap: break-word;
+  flex-wrap: wrap;
 }
 
-/* ----------------------- Questions answered  ---------------------------- */
-
-.bg__answer__anom{
-  margin: 10px 0 0 13px
-}
-
-.bg__answer__anom--not-answer{
-  color: #6e6e6e;
-  font-weight: 700;
-  margin: 5px 0 15px;
-  margin: 0;
+.question__not-answer {
+  margin: 15px 10px;
+  color: black;
+  font-size: 16px;
   text-align: center;
 }
 
-.bg__answer__span{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  
-}
 
-.bg__answer__text{
+.question-bg__answer{
   border-radius: 3px;
   background-color: #7C91AA;
   box-shadow: 0px 4px 0px #5C7490;
@@ -143,19 +99,6 @@
   width: 90%;
 }
 
-/* ----------------------- Not questions ---------------------------- */
-
-.not-questions{
-  border: 3px rgb(156, 156, 156) solid;
-  border-radius: 5px;
-  background-color: rgb(201, 201, 201);
-  font-weight: 700;
-  margin: 100px 10px;
-  padding: 20px 0;
-  text-align: center;
-  min-width: 330px;
-}
-
 
 @media screen and (min-width: 576px) {
 
@@ -164,123 +107,107 @@
     margin: 100px auto;
   }
 
-  .form__button--mini{
+  .profile{
+    padding: 50px 0;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .profile-info-container {
+    width: 400px;
+  }
+
+  .profile__image {
+    margin: 0 25px;
+    height: 235px;
+    width: 235px;;
+  }
+
+
+  .profile__title{
+    font-size: 50px;
+  }
+
+  .profile__user{
+    font-size: 24px;
+  }
+
+  .question__not-answer {
+
     font-size: 18px;
-    height: 60px;
-    max-width: 400px;
-
-  }
-  
-  .my-info{
-    height: 250px;
-    margin: 20px auto;
-    padding: 15px 0;
-    width: 95%;
-    min-width: 330px;
-  }
-
-
-  .my-info__title{
-    font-size: 38px;
-    margin: 10px auto 0;
-    padding-bottom: 5px;
 
   }
 
-  .my-info__text{
-    font-size: 22px;
-  }
-
-  .bg{
-    width: 90%;
-    margin: 20px auto;
-    padding-bottom: 15px;
-  }
-  
-  .button-answer{
-    height: 60px;
-    max-width: 300px;
-  }
-
-  .bg__answer__anom--not-answer{
-    color: #6e6e6e;
-    font-weight: 700;
-    margin: 5px 0 15px;
-    margin: 0;
-    text-align: center;
-  }
-  
-  .bg__answer__span{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    
-  }
-  
-  .bg__answer__text{
-    border-radius: 3px;
-    background-color: #7C91AA;
-    box-shadow: 0px 4px 0px #5C7490;
-    font-family: 'Cairo', sans-serif;
-    margin-top: 5px;
-    padding: 16px 7px;
-    text-align: justify;
-    width: 90%;
-  }
-
-  .bg__question__span{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    
-  }
   
 }
 
 @media screen and (min-width: 825px) {
 
-  .my-info{
-    height: 340px;
+  .profile {
+    max-width: 900px;
   }
 
-  .my-info__title{
-    font-size: 55px;
-    margin: 10px auto 0;
-    padding-bottom: 5px;
-
+  .profile-info-container {
+    width: 400px;
   }
 
-  .my-info__text{
-    font-size: 35px;
+  .profile__image {
+    height: 270px;
+    width: 270px;
   }
 
 
-  .button-answer{
-    height: 60px;
-    max-width: 300px;
-    font-size: 18px;
+  .profile__user{
+    font-size: 28px;
   }
 
+  .question-bg{
+    max-width: 900px;
+  }
+
+  .question-bg__answer{
+  border-radius: 3px;
+  background-color: #7C91AA;
+  box-shadow: 0px 4px 0px #5C7490;
+  font-family: 'Cairo', sans-serif;
+  margin-top: 5px;
+  padding: 16px 7px;
+  text-align: justify;
+  width: 90%;
+}
+  
+  
+  .question-bg__author{
+    max-width: 700px;
+  }
+  
+  
+  .question-bg__question{
+    max-width: 700px;
+  }
+
+  .question-bg__answer{
+    max-width: 700px;
+  }
 
 }
 
 @media screen and (min-width: 1200px) {
 
-  .my-info{
-    margin-top: 40px;
-    height: 340px;
-    max-width: 900px;
-  }
-
-  .my-info__title{
+  .profile__title{
     font-size: 55px;
-    margin: 10px auto 0;
-    padding-bottom: 5px;
-
   }
 
-  .my-info__text{
-    font-size: 35px;
+  .profile__user{
+    font-size: 30px;
+  }
+
+  .question-bg__question{
+    font-size: 18px;
+  }
+
+  .question-bg__answer{
+    font-size: 18px;
   }
 
   
@@ -293,10 +220,5 @@
     height: 80px;
     margin: 100px auto;
   }
-
-  .bg{
-    max-width: 800px;
-  }
-
   
 }

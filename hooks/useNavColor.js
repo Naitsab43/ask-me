@@ -52,6 +52,10 @@ export const useNavColor = () => {
       titleNav = "Mi Perfil"
       break;
 
+    case "/visitprofile":
+      titleNav = "Visitando un perfil (Q&A)"
+      break;
+
     default: 
       visible = false;
       break;

@@ -28,6 +28,18 @@
   outline: none;
 }
 
+
+.form__input--answer{
+  text-indent: 5px;
+  font-size: 14px;
+  padding-top: 0;
+  background-color: white;
+  border-radius: 3px;
+  height: 50px;
+  margin-top: 0;
+  width: 90%;
+}
+
 .form__input:focus + .label, .form__input:valid + .label{
 
   transform: translateY(-20px);
@@ -48,9 +60,14 @@
 @media screen and (min-width: 576px) {
 
   .form__input{
-    max-width: 550px;
+    
     font-size: 18px;
     height: 80px;
+  }
+
+  .form__input--answer{
+    font-size: 16px;
+    height: 55px;
   }
 
   .content-input {
@@ -71,6 +88,11 @@
     max-width: 700px;
     font-size: 18px;
     height: 90px;
+  }
+
+  .form__input--answer{
+    font-size: 16px;
+    height: 65px;
   }
 
   .content-input {
@@ -95,9 +117,8 @@
 @media screen and (min-width: 1200px) {
 
   .form__input{
-    max-width: 500px;
     font-size: 18px;
-    height: 70px;
+    height: 65px;
   }
 
   .content-input {

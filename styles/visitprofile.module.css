@@ -1,0 +1,43 @@
+
+.not-questions{
+  font-weight: 700;
+  margin: 30px auto 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 900px;
+  min-width: 330px;
+}
+
+.not-questions__text{
+  color: white;
+}
+
+
+.not-questions__image {
+  height: 300px;
+  width: 300px;
+}
+
+
+@media screen and (min-width: 576px) {
+
+  .not-questions__image {
+    
+    height: 400px;
+    width: 400px;
+  }
+
+
+}
+
+@media screen and (min-width: 1200px) {
+
+  .not-questions__image {
+    height: 500px;
+    width: 500px;
+  }
+
+
+}

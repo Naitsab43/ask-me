@@ -27,7 +27,7 @@ export default function Home() {
 
         <section className={styles.info}>
           <h2 className={`${styles.info__title} animate__animated animate__fadeIn`}>¿Que es esto?</h2>
-          <p className={`${styles.info__text} animate__animated animate__fadeIn`}>Esta es una aplicacion de preguntas y respuestas (Q&A) anonimas. Crea un perfil para crear un Q&A o ingresa a un Q&A para hacer preguntas de forma anonima.</p>
+          <p className={`${styles.info__text} animate__animated animate__fadeIn`}>Esta es una aplicacion de preguntas y respuestas (Q&A) anonimas. Crea un perfil para crear un Q&A o visita un perfil para hacer preguntas.</p>
         </section>
 
 
@@ -51,7 +51,7 @@ export default function Home() {
             className={`${buttonStyles.form__button} ${buttonStyles["form__button--orange"]} animate__animated animate__slideInLeft`}
             onClick={(e) => handleClickButton(e, "/anonymous")}
           > 
-            Ingresar como anonimo
+            Visitar un perfil
           </button>
 
 

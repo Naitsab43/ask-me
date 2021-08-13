@@ -1,19 +1,17 @@
 import styles from '../styles/profile.module.css'
 
-export const AnsweredQuestions = () => {
+
+export const AnsweredQuestions = ({author = "Yo"}) => {
   return (
 
-    <div className={styles.bg}>
+    <div className={styles["question-bg"]}>
 
-      <div className={styles.bg__question}>
-        <p className={styles.bg__question__anom}>Anonimo:</p>
-        <span className={styles.bg__question__span}><p className="bg__question__text">Pregunta</p></span>
-      </div>
+      <span className={styles["question-bg__author"]}>Anonimo:</span>
+      <p className={styles["question-bg__question"]}>Aqui va la pregunta</p>
 
-      <div className={styles.bg__answer}>
-        <p className={styles.bg__answer__anom}>Yo:</p>
-        <span className={styles.bg__answer__span}><p className="bg__answer__text">Respuesta</p></span>
-      </div>
+
+      <p className={styles["question-bg__author"]}>{author}:</p>
+      <p className={styles["question-bg__answer"]}>Respuesta</p>
 
     </div>
   )

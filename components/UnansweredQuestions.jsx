@@ -1,22 +1,38 @@
 import styles from '../styles/profile.module.css'
 import createStyles from '../styles/create.module.css'
+import inputStyles from '../styles/inputs.module.css'
+import buttonStyles from '../styles/buttons.module.css'
 
-export const UnansweredQuestion = () => {
+export const UnansweredQuestion = ({isLogged}) => {
   
   return (
-    <div className={styles.bg}>
 
-      <div className={styles.bg__question}>
-        <p className={styles.bg__question__anom}>Anonimo:</p>
-        <span className={styles.bg__question__span}><p class="bg__question__text">Pregunta</p></span>
-      </div>
-  
-    
-      <form className={createStyles.form}>
-        <input className="form__input form__input--answer" name="answer" type="text" placeholder="Ingrese una respuesta..." autoComplete="off" />
-        <button className="button-answer form__button--blue">Responder</button>
-      </form>
+    <div className={styles["question-bg"]}>
+
+      <span className={styles["question-bg__author"]}>Anonimo:</span>
+      <p className={styles["question-bg__question"]}>Aqui va una pregunta</p>
+
+      {
+
+        isLogged ? 
+
+          <form className={createStyles.form} autoComplete="off">
+
+            <input className={`${inputStyles.form__input} ${inputStyles["form__input--answer"]}`} name="answer" type="text" placeholder="Ingrese una respuesta..." />
+
+            <button className={buttonStyles["button-answer"]}>Responder</button>
+
+          </form>
+
+          :
+
+          <p className={styles["question__not-answer"]}>Bastian aún no a respondido esta pregunta</p>
+
+        
+
+      }
       
     </div>
+
   )
 }

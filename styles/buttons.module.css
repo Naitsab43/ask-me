@@ -1,5 +1,4 @@
 
-
 .form__button{
   border: none;
   border-radius: 11px;
@@ -13,6 +12,27 @@
 .form__button--create{
   font-weight: 700;
   height: 75px;
+  margin: 40px auto;
+  background-color:#37da3d;
+  box-shadow: 0px 4px 0px #1B962F;
+}
+
+.button-answer{
+  border: none;
+  background-color: #4148E6;
+  box-shadow: 0px 4px 0px #222E99;
+  border-radius: 5px;
+  color: white;
+  height: 40px;
+  margin-bottom: 10px;
+  width: 80%;
+
+}
+
+.form__button--copy{
+  font-weight: 700;
+  height: 65px;
+  font-size: 18px;
   margin: 40px auto;
   background-color:#37da3d;
   box-shadow: 0px 4px 0px #1B962F;
@@ -45,6 +65,21 @@
     width: 90%;
   }
 
+  .button-answer{
+    font-size: 18px;
+    height: 50px;
+    max-width: 480px;
+  }
+
+  .form__button--copy{
+    font-weight: 700;
+    font-size: 20px;
+    height: 65px;
+    margin: 40px auto;
+    background-color:#37da3d;
+    box-shadow: 0px 4px 0px #1B962F;
+  }
+
   .form__button--create {
     max-width: 550px;
     height: 80px;
@@ -63,6 +98,20 @@
     font-size: 29px;
     height: 120px;
     width: 90%;
+  }
+
+  .button-answer{
+    font-size: 20px;
+    height: 55px;
+  }
+
+  .form__button--copy{
+    font-weight: 700;
+    height: 65px;
+    font-size: 18px;
+    margin: 40px auto;
+    background-color:#37da3d;
+    box-shadow: 0px 4px 0px #1B962F;
   }
 
   .form__button--create{
@@ -84,6 +133,15 @@
     width: 80%;
     transition: margin-right 0.2s ease, font-size 0.2s ease;
   }
+  
+  .form__button--copy{
+    font-weight: 700;
+    font-size: 20px;
+    height: 65px;
+    margin: 40px auto;
+    background-color:#37da3d;
+    box-shadow: 0px 4px 0px #1B962F;
+  }
 
   .form__button--create{
     font-size: 24px;
@@ -91,6 +149,7 @@
     max-width: 500px;
     transition: none;
   }
+
 
   .form__button:hover{
     cursor: pointer;
