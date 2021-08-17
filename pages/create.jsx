@@ -2,20 +2,23 @@ import styles from '../styles/create.module.css'
 import inputStyles from '../styles/inputs.module.css'
 import buttonStyles from '../styles/buttons.module.css'
 import Head from 'next/head';
+
 import toast, { Toaster } from 'react-hot-toast';
 import { useForm } from '../hooks/useForm';
 import { useRouter } from 'next/router';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AlertContext } from '../context/AlertContext';
 
 
-const create = () => {
+const create = ({}) => {
 
   const [values, handleInputChange] = useForm({
     user: "",
     password: "",
     title: ""
   });
+
+  const [disabled, setDisable] = useState(false)
 
   const { setAlert } = useContext(AlertContext);
 
@@ -28,16 +31,33 @@ const create = () => {
     if(values.user == ""){
       return toast.error("Escriba un nombre valido");
     }
-    else if(values.password < 5){
+
+    if(values.password < 5){
       return toast.error("Escriba una contraseña de minimo 5 digitos");
     }
-    else if(values.title == ""){
+
+    if(values.title == ""){
       return toast.error("Escriba un titulo valido");
     }
 
-    setAlert({success: true})
+    setDisable(true)
 
-    router.replace("/login");
+    const resp = await fetch("http://localhost:3000/api/newUser", {
+      method: "POST",
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(values)
+    });
+    
+    const { ok, message } = await resp.json()
+
+    if(ok){
+      setAlert({success: true, message})
+      return router.push("/login")
+    }
+
+    setDisable(false)
+
+    return toast.error(message);
 
   }
 
@@ -81,7 +101,7 @@ const create = () => {
 
         </div>
 
-        <button onClick={e => createUser(e)} className={`${buttonStyles.form__button} ${buttonStyles["form__button--create"]}`}>Crear Q&A</button>
+        <button disabled={disabled} onClick={e => createUser(e)} className={`${buttonStyles.form__button} ${buttonStyles["form__button--create"]}`}> { disabled ? "Cargando..." : "Crear Q&A" } </button>
 
       </form>
 

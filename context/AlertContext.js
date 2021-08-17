@@ -4,7 +4,7 @@ export const AlertContext = createContext();
 
 const initialState = {
   isSuccess: false,
-  isError: false
+  message: ""
 } 
 
 export const AlertProvider = ({children}) => {
