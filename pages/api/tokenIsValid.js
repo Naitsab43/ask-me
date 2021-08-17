@@ -1,25 +1,28 @@
 import jwt from 'jsonwebtoken'
 
-const checkJWT = handler => async (req, res) => {
+const handler = async (req, res) => {
 
   const token = req.headers.authorization;
 
   if (!token) {
     return res.status(401).json({
       ok: false,
-      message: "No hay token en la petición"
+      message: "No se envio un token"
     });
   }
 
 
   try {
         
-    const { uid } = jwt.verify(
+    jwt.verify(
       token,
       process.env.SECRET_JWT_SEED
     );
 
-    req.uid = uid;
+    return res.status(200).json({
+      ok: true,
+      msg: 'Token valido'
+    });
 
 
   } 
@@ -30,6 +33,6 @@ const checkJWT = handler => async (req, res) => {
     });
   }
 
-  return handler(req, res);
-
 };
+
+export default handler;

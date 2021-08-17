@@ -32,7 +32,7 @@ const handler = async (req, res) => {
 
     return res.status(200).json({
       ok: true,
-      message: "Se ha iniciad sesion correctamente",
+      message: "Se ha iniciado sesión correctamente",
       token
     })
 
