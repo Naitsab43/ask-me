@@ -13,8 +13,8 @@ import toast, { Toaster } from 'react-hot-toast';
 const login = () => {
 
   const [values, handleInputChange] = useForm({
-    user: "",
-    password: ""
+    user: "Bastian",
+    password: "1234567"
   })
 
   const [disabled, setDisable] = useState(false)
@@ -44,12 +44,16 @@ const login = () => {
       body: JSON.stringify(values)
     });
     
-    const { ok, message, token } = await resp.json()
+    const { ok, message, uid } = await resp.json()
 
     if(ok){
+
       setAlert({success: true, message})
-      localStorage.setItem("token", token)
-      return router.replace("/profile")
+
+      return router.replace({
+        pathname: "/profile/[id]",
+        query: {id: uid}
+      })
     }
 
     setDisable(false)

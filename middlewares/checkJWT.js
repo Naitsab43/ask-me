@@ -1,8 +1,9 @@
 import jwt from 'jsonwebtoken'
+import cookie from "cookie"
 
-const checkJWT = handler => async (req, res) => {
+const checkJWT = handler => (req, res) => {
 
-  const token = req.headers.authorization;
+  const token = req.headers.authorization
 
   if (!token) {
     return res.status(401).json({
@@ -14,22 +15,33 @@ const checkJWT = handler => async (req, res) => {
 
   try {
         
-    const { uid } = jwt.verify(
+    jwt.verify(
       token,
       process.env.SECRET_JWT_SEED
     );
 
-    req.uid = uid;
-
 
   } 
   catch (error) {
+
+    res.setHeader("Set-Cookie", cookie.serialize("token", null, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      expires: new Date(0),
+      sameSite: "lax",
+      path: "/"
+    }))
+  
     return res.status(401).json({
       ok: false,
-      msg: 'Token no válido'
+      message: 'Token no válido'
     });
+
+
   }
 
   return handler(req, res);
 
 };
+
+export default checkJWT;

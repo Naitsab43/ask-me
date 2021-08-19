@@ -1,8 +1,9 @@
 import jwt from 'jsonwebtoken'
+import cookie from "cookie"
 
 const handler = async (req, res) => {
 
-  const token = req.headers.authorization;
+  const token = req.cookies.token;
 
   if (!token) {
     return res.status(401).json({
@@ -21,15 +22,24 @@ const handler = async (req, res) => {
 
     return res.status(200).json({
       ok: true,
-      msg: 'Token valido'
+      message: 'Token valido'
     });
 
 
   } 
   catch (error) {
+
+    res.setHeader("Set-Cookie", cookie.serialize("token", null, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      expires: new Date(0),
+      sameSite: "lax",
+      path: "/"
+    }))
+
     return res.status(401).json({
       ok: false,
-      msg: 'Token no válido'
+      message: 'Token no válido'
     });
   }
 

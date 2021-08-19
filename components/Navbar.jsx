@@ -8,7 +8,7 @@ const Navbar = () => {
   const { navRef, titleNav, visible, changeNavColor } = useNavColor();
 
   useEffect(() => {
-    
+
     visible && changeNavColor()
     
   }, [])

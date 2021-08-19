@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt'
 import Users from '../../models/users';
 import connectDB from '../../middlewares/database';
 import { generateJWT } from '../../helpers/api/generateJwt';
+import cookie from "cookie"
 
 
 const handler = async (req, res) => {
@@ -28,12 +29,22 @@ const handler = async (req, res) => {
       })
     }
 
-    const token = await generateJWT( user._id );
+    const { _id, title, user: userName, idQA } = user;
+
+    const token = await generateJWT(_id, title, userName, idQA);
+
+    res.setHeader("Set-Cookie", cookie.serialize("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      maxAge: 86400, // 24 Horas
+      sameSite: "lax",
+      path: "/"
+    }))
 
     return res.status(200).json({
       ok: true,
       message: "Se ha iniciado sesión correctamente",
-      token
+      uid: user._id
     })
 
   }
