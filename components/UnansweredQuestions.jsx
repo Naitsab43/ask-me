@@ -3,14 +3,16 @@ import createStyles from '../styles/create.module.css'
 import inputStyles from '../styles/inputs.module.css'
 import buttonStyles from '../styles/buttons.module.css'
 
-export const UnansweredQuestion = ({isLogged}) => {
+export const UnansweredQuestion = ({isLogged, question}) => {
   
+  const { question: aQuestion } = question;
+
   return (
 
     <div className={styles["question-bg"]}>
 
       <span className={styles["question-bg__author"]}>Anonimo:</span>
-      <p className={styles["question-bg__question"]}>Aqui va una pregunta</p>
+      <p className={styles["question-bg__question"]}>{ aQuestion }</p>
 
       {
 

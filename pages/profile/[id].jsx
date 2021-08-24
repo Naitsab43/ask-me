@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import { AuthContext } from '../../context/AuthContext'
 import toast, { Toaster } from 'react-hot-toast'
 import { AlertContext } from '../../context/AlertContext'
+import { NotQuestions } from '../../components/NotQuestions'
 
 export async function getServerSideProps(context) {
 
@@ -26,17 +27,21 @@ export async function getServerSideProps(context) {
       user
     }, 
   }
+  
+  
 }
 
 
 const profile = ({token, user}) => {
 
-  const { setIsLogged } = useContext(AuthContext)
+  const { isLogged, setIsLogged } = useContext(AuthContext)
   const { alert } = useContext(AlertContext)
+
+  const { questions } = user;
 
   const router = useRouter()
 
-  const isLogged = async () =>{
+  const verifyToken = async () =>{
 
     const resp = await fetch("http://localhost:3000/api/tokenIsValid", {
       method: "GET",
@@ -50,7 +55,6 @@ const profile = ({token, user}) => {
 
   }
 
-
   // Auth effects
   useEffect(() => {
 
@@ -60,7 +64,7 @@ const profile = ({token, user}) => {
       
     }
 
-    isLogged()
+    verifyToken()
 
   }, [])
 
@@ -89,10 +93,24 @@ const profile = ({token, user}) => {
       />
       
       <ProfileInfo {...user}/>
-      
-      <UnansweredQuestion isLogged={true}/>
-      
-      <AnsweredQuestions /> 
+
+      { questions.length == 0 && <NotQuestions /> }
+
+
+      { 
+
+        questions.map((question) => (
+          
+          question.answer ? 
+
+          <AnsweredQuestions key={question._id} question={question} /> 
+          : 
+          <UnansweredQuestion key={question._id} question={question} isLogged={isLogged}/>
+
+        ))
+        
+      }
+
 
     </>
 

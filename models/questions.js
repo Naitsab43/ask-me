@@ -14,7 +14,6 @@ let questionsSchema = new Schema({
   },
   answer: {
     type: String,
-    required: true
   },
   user: {
     type: mongoose.Schema.ObjectId,

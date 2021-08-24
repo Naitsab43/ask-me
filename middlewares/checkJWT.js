@@ -20,6 +20,7 @@ const checkJWT = handler => (req, res) => {
       process.env.SECRET_JWT_SEED
     );
 
+    return handler(req, res);
 
   } 
   catch (error) {
@@ -31,16 +32,17 @@ const checkJWT = handler => (req, res) => {
       sameSite: "lax",
       path: "/"
     }))
+
+    console.log(error);
   
     return res.status(401).json({
       ok: false,
-      message: 'Token no válido'
+      message: 'Token no válido',
+      error
     });
 
 
   }
-
-  return handler(req, res);
 
 };
 

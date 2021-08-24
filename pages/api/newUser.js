@@ -5,7 +5,7 @@ import connectDB from '../../middlewares/database';
 // Crea una cuenta
 const handler = async (req, res) => {
 
-  let body = req.body;
+  const body = req.body;
   
   // Comprueba que ningun campo este vacio
   if(body.user.length < 1 ){
