@@ -3,11 +3,11 @@ import Users from '../../../models/users';
 import checkJWT from '../../../middlewares/checkJWT';
 
 const handler = async (req, res) => {
-  
+
   try{ 
     
     const { id } = req.query
-    const user = await Users.findOne({_id: id}).select("user title idQA image questions")
+    const user = await Users.findOne({_id: id}).select("user title idQA image questions").populate("questions")
 
   
     return res.json(user)

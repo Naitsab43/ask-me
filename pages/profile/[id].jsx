@@ -94,12 +94,12 @@ const profile = ({token, user}) => {
       
       <ProfileInfo {...user}/>
 
-      { questions.length == 0 && <NotQuestions /> }
+      { questions?.length == 0 && <NotQuestions /> }
 
 
       { 
 
-        questions.map((question) => (
+        questions?.map((question) => (
           
           question.answer ? 
 
