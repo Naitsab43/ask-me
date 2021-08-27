@@ -49,7 +49,7 @@ const handler = async (req, res) => {
 
   }
   catch(error){
-    res.status(400).json({
+    res.status(500).json({
       ok: false,
       message: "Algo salio mal, intente nuevamente",
       error
