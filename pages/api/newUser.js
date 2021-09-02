@@ -53,7 +53,6 @@ const handler = async (req, res) => {
       password: encryptPassword,
       image: null,
       title: body.title,
-      idQA: new Date().getTime(),
       questions: []
     });
 

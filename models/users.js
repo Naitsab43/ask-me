@@ -19,9 +19,6 @@ let usersSchema = new Schema({
     type: String,
     required: [true, "El nombre del QA es obligatorio"]
   },
-  idQA: {
-    type: String
-  },
   questions: [{
     type: mongoose.Schema.ObjectId,
     ref: 'Questions'
