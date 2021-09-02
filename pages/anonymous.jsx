@@ -24,7 +24,7 @@ const anonymous = () => {
       return toast.error("Escriba un id valido");
     }
 
-    router.push("/visitprofile")
+    router.push(`/visitprofile/${values.idQA}`)
     console.log("Ingresado")
 
   }
