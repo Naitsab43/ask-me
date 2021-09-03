@@ -7,7 +7,7 @@ const handler = async (req, res) => {
   try{ 
     
     const { id } = req.query
-    const user = await Users.findOne({_id: id}).select("user title idQA image questions").populate("Questions")
+    const user = await Users.findOne({_id: id}).select("user title idQA image questions").populate("questions")
 
   
     return res.json(user)

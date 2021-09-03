@@ -7,6 +7,8 @@ export const UnansweredQuestion = ({isLogged, question}) => {
   
   const { question: aQuestion } = question;
 
+  console.log(aQuestion);
+
   return (
 
     <div className={styles["question-bg"]}>

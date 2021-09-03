@@ -35,7 +35,7 @@ const visitprofile = ({user}) => {
 
       <ProfileInfo showButton={false} {...user} />
 
-      <CreateQuestion  />
+      <CreateQuestion />
 
       { questions?.length == 0 && <NotQuestions /> }
 
@@ -47,7 +47,7 @@ const visitprofile = ({user}) => {
 
           <AnsweredQuestions key={question._id} question={question} /> 
           : 
-          <UnansweredQuestion key={question._id} question={question} isLogged={isLogged}/>
+          <UnansweredQuestion key={question._id} question={question} isLogged={false}/>
 
         ))
 

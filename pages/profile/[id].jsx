@@ -100,7 +100,7 @@ const profile = ({token, user}) => {
       { 
 
         questions?.map((question) => (
-          
+                    
           question.answer ? 
 
           <AnsweredQuestions key={question._id} question={question} /> 
