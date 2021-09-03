@@ -1,8 +1,7 @@
 import styles from '../styles/profile.module.css'
 import buttonStyles from '../styles/buttons.module.css'
 
-export const ProfileInfo = ({user, title, idQA, image}, showButton=true) => {
-
+export const ProfileInfo = ({user, title, idQA, image}, {showButton=false}) => {
 
   return (
 
@@ -12,8 +11,8 @@ export const ProfileInfo = ({user, title, idQA, image}, showButton=true) => {
 
       <div className={styles["profile-info-container"]}>
 
-        <h2 className={styles.profile__title}>{title}</h2>
-        <span className={styles.profile__user}>{user}</span>
+        <h2 className={styles.profile__title}>{ title }</h2>
+        <span className={styles.profile__user}>{ user }</span>
         
         {
           showButton && <button className={`${buttonStyles.form__button} ${buttonStyles["form__button--copy"]}`}>Copiar ID</button>

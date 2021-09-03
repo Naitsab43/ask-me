@@ -1,7 +1,7 @@
 import connectDB from '../../middlewares/database';
 import Questions from '../../models/questions';
 import Users from '../../models/users';
-import checkJWT from '../../middlewares/checkJWT';
+
 
 const handler = async (req, res) => {
 
@@ -36,4 +36,4 @@ const handler = async (req, res) => {
 
 }
 
-export default checkJWT( connectDB(handler) ) ;
+export default connectDB(handler)

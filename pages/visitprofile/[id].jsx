@@ -23,7 +23,6 @@ export async function getServerSideProps(context) {
     }, 
   }
   
-  
 }
 
 const visitprofile = ({user}) => {
@@ -34,15 +33,25 @@ const visitprofile = ({user}) => {
 
     <>
 
-      {/* <ProfileInfo showButton={false} /> */}
+      <ProfileInfo showButton={false} {...user} />
 
       <CreateQuestion  />
 
-      {/* <AnsweredQuestions author={"Bastian"}/>
-
-      <UnansweredQuestion /> */}
-
       { questions?.length == 0 && <NotQuestions /> }
+
+      { 
+
+        questions?.map((question) => (
+          
+          question.answer ? 
+
+          <AnsweredQuestions key={question._id} question={question} /> 
+          : 
+          <UnansweredQuestion key={question._id} question={question} isLogged={isLogged}/>
+
+        ))
+
+      }
 
     </>
     
