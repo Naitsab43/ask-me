@@ -11,7 +11,7 @@ import { NotQuestions } from '../../components/NotQuestions'
 
 export async function getServerSideProps(context) {
 
-  const rawUser = await fetch(`http://localhost:3000/api/user/${context.query.id}`, {
+  const rawUser = await fetch(`http://localhost:3000/api/profile/${context.query.id}`, {
     method: "GET",
     headers: {
       "Authorization": context.req.cookies.token,
@@ -31,13 +31,13 @@ export async function getServerSideProps(context) {
   
 }
 
-
 const profile = ({token, user}) => {
 
   const { isLogged, setIsLogged } = useContext(AuthContext)
   const { alert } = useContext(AlertContext)
 
   const { questions } = user;
+
 
   const router = useRouter()
 
@@ -54,6 +54,7 @@ const profile = ({token, user}) => {
     setIsLogged(true)
 
   }
+
 
   // Auth effects
   useEffect(() => {
@@ -100,7 +101,7 @@ const profile = ({token, user}) => {
       { 
 
         questions?.map((question) => (
-                    
+
           question.answer ? 
 
           <AnsweredQuestions key={question._id} question={question} /> 

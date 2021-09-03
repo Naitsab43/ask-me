@@ -1,7 +1,20 @@
 import styles from '../styles/profile.module.css'
 import buttonStyles from '../styles/buttons.module.css'
 
-export const ProfileInfo = ({user, title, idQA, image}, {showButton=false}) => {
+export const ProfileInfo = ({user, title, image, _id}, {showButton=true}) => {
+
+  const copyToClipboard = e => {
+
+    e.preventDefault()
+    
+    const aux = document.createElement("input")
+    aux.setAttribute("value", _id);
+    document.body.appendChild(aux);
+    aux.select();
+    document.execCommand("copy");
+    document.body.removeChild(aux);
+
+  }
 
   return (
 
@@ -15,7 +28,16 @@ export const ProfileInfo = ({user, title, idQA, image}, {showButton=false}) => {
         <span className={styles.profile__user}>{ user }</span>
         
         {
-          showButton && <button className={`${buttonStyles.form__button} ${buttonStyles["form__button--copy"]}`}>Copiar ID</button>
+
+          showButton && 
+
+          <button 
+            className={`${buttonStyles.form__button} ${buttonStyles["form__button--copy"]}`}
+            onClick={copyToClipboard}
+          >
+            Copiar ID
+          </button>
+
         }
 
       </div>

@@ -10,12 +10,11 @@ export async function getServerSideProps(context) {
   const rawUser = await fetch(`http://localhost:3000/api/visitprofile/${context.query.id}`, {
     method: "GET",
     headers: {
-      "Authorization": context.req.cookies.token,
       "Content-Type": "application/json"
     }
   })
 
-  const user = await rawUser.json()
+  const { user } = await rawUser.json()
 
   return {
     props: {
@@ -28,6 +27,7 @@ export async function getServerSideProps(context) {
 const visitprofile = ({user}) => {
 
   const { questions } = user
+
 
   return (
 
