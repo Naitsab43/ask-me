@@ -31,7 +31,7 @@
   height: 40px;
   margin-bottom: 10px;
   width: 80%;
-
+  cursor: pointer;
 }
 
 .form__button--copy{

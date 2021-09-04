@@ -8,10 +8,6 @@ let questionsSchema = new Schema({
     type: String,
     required: true
   },
-  idQuestion: {
-    type: String,
-    required: true
-  },
   answer: {
     type: String,
   },

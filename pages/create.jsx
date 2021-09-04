@@ -10,7 +10,7 @@ import { useContext, useState } from 'react';
 import { AlertContext } from '../context/AlertContext';
 
 
-const create = ({}) => {
+const create = () => {
 
   const [values, handleInputChange] = useForm({
     user: "",

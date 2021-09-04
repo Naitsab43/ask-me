@@ -8,6 +8,7 @@ import { AuthContext } from '../../context/AuthContext'
 import toast, { Toaster } from 'react-hot-toast'
 import { AlertContext } from '../../context/AlertContext'
 import { NotQuestions } from '../../components/NotQuestions'
+import { QuestionsContext } from '../../context/QuestionsContext'
 
 export async function getServerSideProps(context) {
 
@@ -35,8 +36,7 @@ const profile = ({token, user}) => {
 
   const { isLogged, setIsLogged } = useContext(AuthContext)
   const { alert } = useContext(AlertContext)
-
-  const { questions } = user;
+  const { questions, setQuestions } = useContext(QuestionsContext)
 
 
   const router = useRouter()
@@ -56,7 +56,7 @@ const profile = ({token, user}) => {
   }
 
 
-  // Auth effects
+  // Auth effect
   useEffect(() => {
 
     if(!token){
@@ -69,13 +69,22 @@ const profile = ({token, user}) => {
 
   }, [])
 
-  // Alert effects
+  // Alert effect
   useEffect(() => {
 
     if(alert.success){
       toast.success(alert.message);
     }
 
+    if(alert.error){
+      toast.error(alert.message)
+    }
+
+  }, [alert])
+
+  // First fetching from server effect
+  useEffect(() => {
+    setQuestions(user.questions)
   }, [])
 
   return (
@@ -95,6 +104,7 @@ const profile = ({token, user}) => {
       
       <ProfileInfo {...user}/>
 
+      
       { questions?.length == 0 && <NotQuestions /> }
 
 

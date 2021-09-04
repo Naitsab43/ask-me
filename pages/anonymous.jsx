@@ -29,7 +29,7 @@ const anonymous = () => {
       headers: {
         "Content-Type": "application/json"
       }
-    })
+    }).then(resp => resp.json())
 
     if(ok){
       return router.push(`/visitprofile/${values.idQA}`)
