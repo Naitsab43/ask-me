@@ -22,6 +22,14 @@ export async function getServerSideProps(context) {
 
   const user = await rawUser.json()
 
+  user.questions = user.questions.sort((a) => {
+
+    if(a.answer === null) return -1
+    
+    return 1
+
+  })
+
   return {
     props: {
       token: context.req.cookies.token ?? null,
@@ -102,7 +110,7 @@ const profile = ({token, user}) => {
         }}
       />
       
-      <ProfileInfo {...user}/>
+      <ProfileInfo showButton {...user}/>
 
       
       { questions?.length == 0 && <NotQuestions /> }
@@ -121,7 +129,6 @@ const profile = ({token, user}) => {
         ))
         
       }
-
 
     </>
 

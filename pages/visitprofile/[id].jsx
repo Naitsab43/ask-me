@@ -16,6 +16,14 @@ export async function getServerSideProps(context) {
 
   const { user } = await rawUser.json()
 
+  user.questions = user.questions.sort((a) => {
+
+    if(a.answer === null) return 1
+    
+    return -1
+
+  })
+
   return {
     props: {
       user
@@ -33,7 +41,7 @@ const visitprofile = ({user}) => {
 
     <>
 
-      <ProfileInfo showButton={false} {...user} />
+      <ProfileInfo {...user} />
 
       <CreateQuestion />
 
