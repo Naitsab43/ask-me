@@ -1,11 +1,14 @@
+import { useContext } from 'react'
+
 import styles from '../styles/profile.module.css'
 import buttonStyles from '../styles/buttons.module.css'
+
 import { AlertContext } from '../context/AlertContext'
-import { useContext } from 'react'
 
 export const ProfileInfo = ({user, title, image, _id, showButton=false }) => {
 
   const { alert, setAlert } = useContext(AlertContext)
+
 
   const copyToClipboard = e => {
 
@@ -26,19 +29,23 @@ export const ProfileInfo = ({user, title, image, _id, showButton=false }) => {
 
   }
 
+  const editProfile = () => {
+
+
+
+  }
+
   return (
 
     <div className={styles.profile}>
 
       <img className={styles.profileImage} src="https://play-lh.googleusercontent.com/IlnBc1ca_20U3qacgXrkXM_opQK9gvTXryaPSCCPCanD_o_hPdgPQkhQ6-DcsfSZ9PU9=s360" />
 
-      <div className={styles["profile-info-container"]}>
+      <div className={styles.profileInfoContainer}>
 
-        <div className={styles.profileInfoGroup}>
-
-          <h2 className={styles.profile__title}>{ title }</h2>
-          <span className={styles.profile__user}>{ user }</span>
-
+        <div className={styles.infoGroup}>
+          <h2 className={styles.profileTitle}>{ title }</h2>
+          <span className={styles.profileUser}>{ user }</span>
         </div>
         
         {
@@ -57,7 +64,7 @@ export const ProfileInfo = ({user, title, image, _id, showButton=false }) => {
             
             <button 
               className={`${buttonStyles.form__button} ${buttonStyles["form__button--edit"]}`}
-              onClick={copyToClipboard}
+              onClick={editProfile}
             >
               Editar perfil
             </button>

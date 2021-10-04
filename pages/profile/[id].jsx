@@ -1,13 +1,15 @@
+import { useContext, useEffect } from 'react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
+import toast, { Toaster } from 'react-hot-toast'
+
 import { ProfileInfo } from '../../components/ProfileInfo'
+import { NotQuestions } from '../../components/NotQuestions'
 import { UnansweredQuestion } from '../../components/UnansweredQuestions'
 import { AnsweredQuestions } from '../../components/AnsweredQuestions'
-import { useContext, useEffect } from 'react'
-import { useRouter } from 'next/router'
+
 import { AuthContext } from '../../context/AuthContext'
-import toast, { Toaster } from 'react-hot-toast'
 import { AlertContext } from '../../context/AlertContext'
-import { NotQuestions } from '../../components/NotQuestions'
 import { QuestionsContext } from '../../context/QuestionsContext'
 
 export async function getServerSideProps(context) {
