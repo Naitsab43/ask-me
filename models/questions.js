@@ -8,17 +8,12 @@ let questionsSchema = new Schema({
     type: String,
     required: true
   },
-  idQuestion: {
-    type: String,
-    required: true
-  },
   answer: {
     type: String,
-    required: true
   },
   user: {
     type: mongoose.Schema.ObjectId,
-    ref: 'Users'
+    ref: "Users"
   }
 
 });

@@ -16,16 +16,26 @@ const anonymous = () => {
 
   const router = useRouter();
 
-  const enterAnonymous = (e) => {
+  const enterAnonymous = async (e) => {
 
     e.preventDefault()
 
-    if(values.idQA == ""){
+    if(values.idQA == "" || values.idQA < 7){
       return toast.error("Escriba un id valido");
     }
 
-    router.push("/visitprofile")
-    console.log("Ingresado")
+    const { ok } = await fetch(`http://localhost:3000/api/visitprofile/${values.idQA}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(resp => resp.json())
+
+    if(ok){
+      return router.push(`/visitprofile/${values.idQA}`)
+    }
+
+    return toast.error("Escriba un id valido");
 
   }
 

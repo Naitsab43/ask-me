@@ -31,16 +31,25 @@
   height: 40px;
   margin-bottom: 10px;
   width: 80%;
-
+  cursor: pointer;
 }
 
 .form__button--copy{
   font-weight: 700;
   height: 65px;
   font-size: 18px;
-  margin: 40px auto;
+  margin: 40px auto 20px;
   background-color:#37da3d;
   box-shadow: 0px 4px 0px #1B962F;
+}
+
+.form__button--edit{
+  font-weight: 700;
+  height: 65px;
+  font-size: 18px;
+  margin: 0 auto 10px;
+  background-color:#3399dd;
+  box-shadow: 0px 4px 0px #124c74;
 }
 
 .form__button--green{
@@ -80,9 +89,14 @@
     font-weight: 700;
     font-size: 20px;
     height: 65px;
-    margin: 40px auto;
-    background-color:#37da3d;
-    box-shadow: 0px 4px 0px #1B962F;
+    margin: 40px auto 20px;
+  }
+
+  .form__button--edit{
+    font-weight: 700;
+    font-size: 20px;
+    height: 65px;
+    margin: 0px auto 10px;
   }
 
   .form__button--create {
@@ -114,9 +128,14 @@
     font-weight: 700;
     height: 65px;
     font-size: 18px;
-    margin: 40px auto;
-    background-color:#37da3d;
-    box-shadow: 0px 4px 0px #1B962F;
+    margin: 40px auto 20px;
+  }
+
+  .form__button--edit{
+    font-weight: 700;
+    font-size: 18px;
+    height: 65px;
+    margin: 0px auto 10px;
   }
 
   .form__button--create{
@@ -143,9 +162,14 @@
     font-weight: 700;
     font-size: 20px;
     height: 65px;
-    margin: 40px auto;
-    background-color:#37da3d;
-    box-shadow: 0px 4px 0px #1B962F;
+    margin: 40px auto 20px;
+  }
+
+  .form__button--edit{
+    font-weight: 700;
+    font-size: 18px;
+    height: 65px;
+    margin: 0px auto 10px;
   }
 
   .form__button--create{

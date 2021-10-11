@@ -1,35 +1,33 @@
 import styles from '../styles/create.module.css'
-import inputStyles from '../styles/inputs.module.css'
 import buttonStyles from '../styles/buttons.module.css'
 
 import Head from 'next/head';
 import { useForm } from '../hooks/useForm';
-import { useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { AlertContext } from '../context/AlertContext';
 import toast, { Toaster } from 'react-hot-toast';
+import { AnimatedInput } from '../components/AnimatedInput';
 
 
 const login = () => {
 
   const [values, handleInputChange] = useForm({
-    user: "",
-    password: ""
+    user: "Bastian",
+    password: "1234567"
   })
 
   const [disabled, setDisable] = useState(false)
-
   const { setAlert } = useContext(AlertContext);
-
   const router = useRouter();
 
+  const onChange = useCallback(() => handleInputChange, [])
 
   const loginUser = async (e) => {
 
     e.preventDefault()
 
-
-    if(values.user == ""){
+    if(values.user.length == 0){
       return toast.error("Escriba un nombre valido");
     }
     else if(values.password < 5){
@@ -44,12 +42,16 @@ const login = () => {
       body: JSON.stringify(values)
     });
     
-    const { ok, message, token } = await resp.json()
+    const { ok, message, uid } = await resp.json()
 
     if(ok){
+
       setAlert({success: true, message})
-      localStorage.setItem("token", token)
-      return router.replace("/profile")
+
+      return router.replace({
+        pathname: "/profile/[id]",
+        query: {id: uid}
+      })
     }
 
     setDisable(false)
@@ -83,22 +85,9 @@ const login = () => {
 
       <form className={styles.form} autoComplete="off" >
 
-        <div className={inputStyles["content-input"]}>
+        <AnimatedInput handleInputChange={onChange} label="Nombre" name="user" type="text" />
 
-          <input onChange={handleInputChange} className={inputStyles.form__input} name="user" type="text" required />
-
-          <label className={inputStyles.label}>Nombre</label>
-
-        </div>
-
-        <div className={inputStyles["content-input"]}>
-
-          <input onChange={handleInputChange} className={inputStyles.form__input} name="password" type="password" required/>
-
-          <label className={inputStyles.label} >Contraseña</label>
-
-        </div>
-
+        <AnimatedInput handleInputChange={onChange} label="Contraseña" name="password" type="password" />
 
         <button disabled={disabled} onClick={e => loginUser(e)} className={`${buttonStyles.form__button} ${buttonStyles["form__button--create"]}`}> { disabled ? "Cargando..." : "Ingresar a mi Q&A" } </button>
 

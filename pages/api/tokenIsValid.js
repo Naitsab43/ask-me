@@ -1,15 +1,15 @@
 import jwt from 'jsonwebtoken'
 import cookie from "cookie"
 
-const checkJWT = handler => (req, res) => {
+const handler = async (req, res) => {
 
-  const token = req.headers.authorization || req.cookies.token;
+  const token = req.cookies.token;
 
 
   if (!token) {
     return res.status(401).json({
       ok: false,
-      message: "No hay token en la petición"
+      message: "No se envio un token"
     });
   }
 
@@ -21,7 +21,11 @@ const checkJWT = handler => (req, res) => {
       process.env.SECRET_JWT_SEED
     );
 
-    return handler(req, res);
+    return res.status(200).json({
+      ok: true,
+      message: 'Token valido'
+    });
+
 
   } 
   catch (error) {
@@ -34,17 +38,12 @@ const checkJWT = handler => (req, res) => {
       path: "/"
     }))
 
-    console.log(error);
-  
     return res.status(401).json({
       ok: false,
-      message: 'Token no válido',
-      error
+      message: 'Token no válido'
     });
-
-
   }
 
 };
 
-export default checkJWT;
+export default handler;

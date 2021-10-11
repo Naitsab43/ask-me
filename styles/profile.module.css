@@ -1,8 +1,8 @@
 
 .profile{
+  background-image: url("../assets/cool.png");
   display: flex;
   border: 1px rgb(226, 226, 226) solid;
-  background-color: #3A3A3A;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
@@ -12,14 +12,14 @@
   min-width: 330px;
 }
 
-.profile__image {
+.profileImage {
   border-radius: 200px;
   height: 120px;
   width: 120px;
   margin-bottom: 10px;
 }
 
-.profile__title{
+.profileTitle{
   border-bottom: 6px #BDBDBD solid;
   color: white;
   margin: 0 5px;
@@ -31,14 +31,25 @@
 
 }
 
-.profile-info-container {
+.profileInfoContainer {
+  margin: 10px;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
 }
 
-.profile__user{
+.infoGroup {
+  background-color: rgb(43, 43, 43);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  padding: 35px;
+}
+
+.profileUser{
   margin-top: 5px;
   color: white;
   font-size: 20px;
@@ -113,22 +124,22 @@
     justify-content: center;
   }
 
-  .profile-info-container {
+  .profileInfoContainer {
     width: 400px;
   }
 
-  .profile__image {
+  .profileImage {
     margin: 0 25px;
     height: 235px;
     width: 235px;;
   }
 
 
-  .profile__title{
+  .profileTitle{
     font-size: 50px;
   }
 
-  .profile__user{
+  .profileUser{
     font-size: 24px;
   }
 
@@ -147,17 +158,17 @@
     max-width: 900px;
   }
 
-  .profile-info-container {
+  .profileInfoContainer {
     width: 400px;
   }
 
-  .profile__image {
+  .profileImage {
     height: 270px;
     width: 270px;
   }
 
 
-  .profile__user{
+  .profileUser{
     font-size: 28px;
   }
 
@@ -194,11 +205,11 @@
 
 @media screen and (min-width: 1200px) {
 
-  .profile__title{
+  .profileTitle{
     font-size: 55px;
   }
 
-  .profile__user{
+  .profileUser{
     font-size: 30px;
   }
 

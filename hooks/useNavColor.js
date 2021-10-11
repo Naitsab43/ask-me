@@ -22,13 +22,13 @@ export const useNavColor = () => {
 
     navRef.current.style.backgroundColor = colors[number].color;
     navRef.current.style.borderBottom = `${colors[number].shadow} 5px solid`;
-
   }
 
   let titleNav = "";
   let visible = true;
 
   const { pathname } = useRouter()
+
 
   switch(pathname){
 
@@ -48,11 +48,11 @@ export const useNavColor = () => {
       titleNav = "Ingresar como anónimo"
       break;
 
-    case "/profile":
+    case "/profile/[id]":
       titleNav = "Mi Perfil"
       break;
 
-    case "/visitprofile":
+    case "/visitprofile/[id]":
       titleNav = "Visitando un perfil (Q&A)"
       break;
 

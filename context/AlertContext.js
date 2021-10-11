@@ -3,7 +3,8 @@ import { createContext, useState } from "react";
 export const AlertContext = createContext();
 
 const initialState = {
-  isSuccess: false,
+  success: false,
+  error: false,
   message: ""
 } 
 
