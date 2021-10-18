@@ -25,8 +25,8 @@ export const ProfileInfo = ({user, title, image, _id, showButton=false }) => {
     document.body.removeChild(aux);
 
     setAlert({
-      ...alert,
       success: true,
+      error: false,
       message: "Se ha copiado el ID"
     })
 

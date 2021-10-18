@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
+import router, { useRouter } from 'next/router'
 import toast, { Toaster } from 'react-hot-toast'
 
 import { ProfileInfo } from '../../components/ProfileInfo'
@@ -23,6 +23,17 @@ export async function getServerSideProps(context) {
   })
 
   const user = await rawUser.json()
+
+  if(user.ok === false) {
+
+    return {
+      props: {
+        user: [],
+        token: null
+      }
+    }
+
+  }
 
   user.questions = user.questions.sort((a) => {
 

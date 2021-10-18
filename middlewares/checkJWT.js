@@ -34,14 +34,11 @@ const checkJWT = handler => (req, res) => {
       path: "/"
     }))
 
-    console.log(error);
-  
     return res.status(401).json({
       ok: false,
       message: 'Token no válido',
       error
     });
-
 
   }
 

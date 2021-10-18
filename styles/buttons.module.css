@@ -62,6 +62,13 @@
   box-shadow: 0px 4px 0px #222E99;
 }
 
+.buttonBlueModal{
+  background-color:#4148E6;
+  box-shadow: 0px 4px 0px #222E99;
+  height: 50px;
+  font-size: 18px;
+}
+
 .form__button--orange{
   background-color: #DA6946;
   box-shadow: 0px 4px 0px #8E442C;
@@ -105,6 +112,11 @@
     font-size: 22px;
   }
 
+  .buttonBlueModal{
+    height: 55px;
+    font-size: 18px;
+  }
+
 }
 
 @media screen and (min-width: 825px) {
@@ -139,8 +151,14 @@
   }
 
   .form__button--create{
-    height: 90px;
-    max-width: 700px;
+    height: 80px;
+    font-size: 24px;
+    max-width: 550px;
+  }
+
+  .buttonBlueModal{
+    height: 60px;
+    font-size: 22px;
   }
 
 }
@@ -201,6 +219,11 @@
     margin-right: 60px;
     transition: margin-right 0.2s ease, font-size 0.2s ease;
 
+  }
+
+  .buttonBlueModal{
+    height: 60px;
+    font-size: 22px;
   }
 
 }
