@@ -1,24 +1,62 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styles from '../styles/modal.module.css'
+import profileStyles from '../styles/profile.module.css'
 import createStyles from '../styles/create.module.css'
 import buttonStyles from '../styles/buttons.module.css'
 import { AnimatedInput } from './AnimatedInput'
 import { ModalContext } from '../context/ModalContext'
+import { useForm } from '../hooks/useForm'
+import { Selected } from './Selected'
 
-export const Modal = ({show = false}) => {
+export const Modal = ({show = false, data}) => {
+
+  const [selected, setSelected] = useState({
+    cool: false,
+    purple: false,
+    poker: false,
+    fruits: false,
+    animals: false,
+    default: false,
+  })
 
   const { setShowModal } = useContext(ModalContext)
+
+  const [values, handleInputChange] = useForm({
+    user: data.user,
+    title: data.title,
+  })
+
+  const backgroundSelected = (selectedItem) => {
+
+    if(selected[selectedItem]){
+      return
+    }
+    
+    setSelected({
+      cool: false,
+      purple: false,
+      poker: false,
+      fruits: false,
+      animals: false,
+      default: false,
+      [selectedItem]: !selected[selectedItem] 
+    })
+
+  }
 
   const closeModal = (e) => {
 
     e.preventDefault()
+    document.getElementsByTagName("body")[0].style = ""
     setShowModal(false)
 
   }
 
-  const onChange = () => {
-    console.log("A");
-  }
+  useEffect(() => {
+
+    selected[data.background] = true
+
+  }, [])
 
   return (
     
@@ -40,7 +78,7 @@ export const Modal = ({show = false}) => {
 
           <div className={styles.imageContainer}>
 
-            <img className={styles.modalImage} src="https://play-lh.googleusercontent.com/IlnBc1ca_20U3qacgXrkXM_opQK9gvTXryaPSCCPCanD_o_hPdgPQkhQ6-DcsfSZ9PU9=s360" />
+            <img className={styles.modalImage} src="https://www.wallpaperuse.com/wallp/54-548934_m.jpg" />
             
             <button className={`${buttonStyles.form__button} ${buttonStyles.buttonBlueModal}`}>Cambiar</button>
             
@@ -48,16 +86,35 @@ export const Modal = ({show = false}) => {
 
           <form className={createStyles.form}>
 
-            <AnimatedInput handleInputChange={onChange} label="Nombre" name="user" type="text" />
+            <AnimatedInput handleInputChange={handleInputChange} value={data.user} label="Nombre" name="user" type="text" />
 
-            <AnimatedInput handleInputChange={onChange} label="Titulo" name="title" type="text" />
+            <AnimatedInput handleInputChange={handleInputChange} value={data.title} label="Titulo" name="title" type="text" />
 
             <div className={styles.bgContainer}>
 
-              <div className={`${styles.options} ${styles.opt1}`} />
-              <div className={`${styles.options} ${styles.opt2}`} />
-              <div className={`${styles.options} ${styles.opt3}`} />
-              <div className={`${styles.options} ${styles.opt4}`} />
+              <div onClick={() => backgroundSelected("cool")} className={`${styles.options} ${profileStyles.cool}`} >
+                <Selected visible={selected.cool} />
+              </div>
+
+              <div onClick={() => backgroundSelected("purple")} className={`${styles.options} ${profileStyles.purple}`} >
+                <Selected visible={selected.purple} />
+              </div>
+
+              <div onClick={() => backgroundSelected("poker")} className={`${styles.options} ${profileStyles.poker}`} >
+                <Selected visible={selected.poker} />
+              </div>
+
+              <div onClick={() => backgroundSelected("fruits")} className={`${styles.options} ${profileStyles.fruits}`} >
+                <Selected visible={selected.fruits} />
+              </div>
+              
+              <div onClick={() => backgroundSelected("animals")} className={`${styles.options} ${profileStyles.animals}`} >
+                <Selected visible={selected.animals} />
+              </div>
+
+              <div onClick={() => backgroundSelected("default")} className={`${styles.options} ${profileStyles.default}`} >
+                <Selected visible={selected.default} />
+              </div>
 
             </div>
 

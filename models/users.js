@@ -15,6 +15,9 @@ let usersSchema = new Schema({
   image: {
     type: String,
   },
+  background: {
+    type: String
+  },
   title: {
     type: String,
     required: [true, "El nombre del QA es obligatorio"]

@@ -6,11 +6,21 @@ import buttonStyles from '../styles/buttons.module.css'
 import { AlertContext } from '../context/AlertContext'
 import { ModalContext } from '../context/ModalContext'
 import { Modal } from './Modal'
+import { profileBackground } from '../helpers/profileBackground'
 
-export const ProfileInfo = ({user, title, image, _id, showButton=false }) => {
+export const ProfileInfo = ({user, title, image, background, _id, showButton=false }) => {
 
-  const { alert, setAlert } = useContext(AlertContext)
+  const { setAlert } = useContext(AlertContext)
   const { showModal, setShowModal } = useContext(ModalContext)
+
+  const data = {
+    user,
+    title,
+    image,
+    background
+  }
+
+  const profileBg = profileBackground(background, styles)
 
 
   const copyToClipboard = e => {
@@ -33,6 +43,7 @@ export const ProfileInfo = ({user, title, image, _id, showButton=false }) => {
   }
 
   const editProfile = () => {
+    document.getElementsByTagName("body")[0].style = "overflow: hidden;"
     setShowModal(true)
   }
 
@@ -40,11 +51,11 @@ export const ProfileInfo = ({user, title, image, _id, showButton=false }) => {
 
     <>
 
-      <Modal show={showModal} />
+      <Modal show={showModal} data={data} />
 
-      <div className={styles.profile}>
+      <div className={`${styles.profile} ${profileBg}`}>
 
-        <img className={styles.profileImage} src="https://play-lh.googleusercontent.com/IlnBc1ca_20U3qacgXrkXM_opQK9gvTXryaPSCCPCanD_o_hPdgPQkhQ6-DcsfSZ9PU9=s360" />
+        <img className={styles.profileImage} src="https://www.wallpaperuse.com/wallp/54-548934_m.jpg" />
 
         <div className={styles.profileInfoContainer}>
 

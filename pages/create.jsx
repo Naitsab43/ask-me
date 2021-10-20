@@ -15,7 +15,8 @@ const create = () => {
   const [values, handleInputChange] = useForm({
     user: "",
     password: "",
-    title: ""
+    title: "",
+    background: "default"
   });
 
   const [disabled, setDisable] = useState(false)

@@ -1,6 +1,5 @@
 
 .profile{
-  background-image: url("../assets/cool.png");
   display: flex;
   border: 1px rgb(226, 226, 226) solid;
   flex-direction: column;
@@ -10,6 +9,31 @@
   padding: 15px 0;
   width: 95%;
   min-width: 330px;
+  border-radius: 10px;
+}
+
+.default {
+  background-color: #131313;
+}
+
+.animals{
+  background-image: url("../assets/animals.png");
+}
+
+.cool {
+  background-image: url("../assets/cool.png");
+}
+
+.purple {
+  background-image: url("../assets/purple.png");
+}
+
+.poker {
+  background-image: url("../assets/poker.png");
+}
+
+.fruits {
+  background-image: url("../assets/fruits.png");
 }
 
 .profileImage {
