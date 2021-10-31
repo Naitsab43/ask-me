@@ -7,20 +7,16 @@ import { AlertContext } from '../context/AlertContext'
 import { ModalContext } from '../context/ModalContext'
 import { Modal } from './Modal'
 import { profileBackground } from '../helpers/profileBackground'
+import { UserContext } from '../context/UserContext'
 
-export const ProfileInfo = ({user, title, image, background, _id, showButton=false }) => {
+export const ProfileInfo = ({showButton=false, token }) => {
 
   const { setAlert } = useContext(AlertContext)
+  const { user } = useContext(UserContext)
   const { showModal, setShowModal } = useContext(ModalContext)
 
-  const data = {
-    user,
-    title,
-    image,
-    background
-  }
 
-  const profileBg = profileBackground(background, styles)
+  const profileBg = profileBackground(user.background, styles)
 
 
   const copyToClipboard = e => {
@@ -28,7 +24,7 @@ export const ProfileInfo = ({user, title, image, background, _id, showButton=fal
     e.preventDefault()
     
     const aux = document.createElement("input")
-    aux.setAttribute("value", _id);
+    aux.setAttribute("value", user._id);
     document.body.appendChild(aux);
     aux.select();
     document.execCommand("copy");
@@ -42,16 +38,18 @@ export const ProfileInfo = ({user, title, image, background, _id, showButton=fal
 
   }
 
+
   const editProfile = () => {
     document.getElementsByTagName("body")[0].style = "overflow: hidden;"
     setShowModal(true)
   }
 
+
   return (
 
     <>
 
-      <Modal show={showModal} data={data} />
+      <Modal show={showModal} background={user.background} token={token}/>
 
       <div className={`${styles.profile} ${profileBg}`}>
 
@@ -60,8 +58,8 @@ export const ProfileInfo = ({user, title, image, background, _id, showButton=fal
         <div className={styles.profileInfoContainer}>
 
           <div className={styles.infoGroup}>
-            <h2 className={styles.profileTitle}>{ title }</h2>
-            <span className={styles.profileUser}>{ user }</span>
+            <h2 className={styles.profileTitle}>{ user.title }</h2>
+            <span className={styles.profileUser}>{ user.user }</span>
           </div>
           
           {

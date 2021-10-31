@@ -4,11 +4,17 @@ import profileStyles from '../styles/profile.module.css'
 import createStyles from '../styles/create.module.css'
 import buttonStyles from '../styles/buttons.module.css'
 import { AnimatedInput } from './AnimatedInput'
-import { ModalContext } from '../context/ModalContext'
 import { useForm } from '../hooks/useForm'
 import { Selected } from './Selected'
+import { useRouter } from 'next/router'
+import { AlertContext } from '../context/AlertContext'
+import { ModalContext } from '../context/ModalContext'
+import { UserContext } from '../context/UserContext'
 
-export const Modal = ({show = false, data}) => {
+export const Modal = ({show = false, background, token}) => {
+
+  const router = useRouter()
+
 
   const [selected, setSelected] = useState({
     cool: false,
@@ -20,11 +26,14 @@ export const Modal = ({show = false, data}) => {
   })
 
   const { setShowModal } = useContext(ModalContext)
+  const { user, setUser } = useContext(UserContext)
+  const { setAlert } = useContext(AlertContext)
 
   const [values, handleInputChange] = useForm({
-    user: data.user,
-    title: data.title,
+    user: undefined,
+    title: undefined
   })
+
 
   const backgroundSelected = (selectedItem) => {
 
@@ -52,11 +61,62 @@ export const Modal = ({show = false, data}) => {
 
   }
 
+  const update = async (e) => {
+
+    e.preventDefault()
+
+    let background = ""
+
+    let image = ""
+
+    for (const item of Object.keys(selected)) {
+      
+      if(selected[item]){
+        background = item
+      }
+
+    }
+    
+    const data = {
+      user: values.user ?? user.user,
+      title: values.title ?? user.title,
+      background,
+      image
+    }
+
+    const rawResponse = await fetch(`http://localhost:3000/api/profile/updateProfile/${router.query.id}`, {
+      method: "POST",
+      headers: {
+        "Authorization": token,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    
+
+    const { ok, message, updatedUser } = await rawResponse.json()
+
+    if(!ok){
+      setAlert({error: true, success: false, message})
+      return
+    }
+
+    setUser(updatedUser)
+    setAlert({success: true, error: false, message})
+
+    closeModal(e)
+
+  }
+
   useEffect(() => {
 
-    selected[data.background] = true
+    setSelected({
+      ...selected,
+      [background]: true
+    })
 
-  }, [])
+  
+  }, [background])
 
   return (
     
@@ -84,11 +144,11 @@ export const Modal = ({show = false, data}) => {
             
           </div>
 
-          <form className={createStyles.form}>
+          <form onSubmit={update} className={createStyles.form}>
 
-            <AnimatedInput handleInputChange={handleInputChange} value={data.user} label="Nombre" name="user" type="text" />
+            <AnimatedInput handleInputChange={handleInputChange} value={user.user} label="Nombre" name="user" type="text" />
 
-            <AnimatedInput handleInputChange={handleInputChange} value={data.title} label="Titulo" name="title" type="text" />
+            <AnimatedInput handleInputChange={handleInputChange} value={user.title} label="Titulo" name="title" type="text" />
 
             <div className={styles.bgContainer}>
 

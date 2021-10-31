@@ -9,8 +9,6 @@ const connectDB = handler => async (req, res) => {
     return handler(req, res);
   }
 
-  console.log(process.env.mongoURL);
-
   // Use new db connection
   await mongoose.connect(process.env.mongoURL, {
     useUnifiedTopology: true,
