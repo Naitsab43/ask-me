@@ -67,7 +67,6 @@ export const UnansweredQuestion = ({isLogged, question}) => {
       
         })
 
-        console.log(updatedQuestions);
 
         return updatedQuestions
 
