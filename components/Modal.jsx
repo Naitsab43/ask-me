@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import styles from '../styles/modal.module.css'
 import profileStyles from '../styles/profile.module.css'
 import createStyles from '../styles/create.module.css'
@@ -10,11 +10,12 @@ import { useRouter } from 'next/router'
 import { AlertContext } from '../context/AlertContext'
 import { ModalContext } from '../context/ModalContext'
 import { UserContext } from '../context/UserContext'
+import { uploadImage } from '../helpers/uploadImage'
+import toast from 'react-hot-toast'
 
-export const Modal = ({show = false, background, token}) => {
+export const Modal = ({show = false, background, image, token}) => {
 
   const router = useRouter()
-
 
   const [selected, setSelected] = useState({
     cool: false,
@@ -25,14 +26,24 @@ export const Modal = ({show = false, background, token}) => {
     default: false,
   })
 
+  const [modalImage, setModalImage] = useState({
+    file: null,
+    image: null
+  })
+
+  const [disable, setDisable] = useState()
+
   const { setShowModal } = useContext(ModalContext)
   const { user, setUser } = useContext(UserContext)
   const { setAlert } = useContext(AlertContext)
 
   const [values, handleInputChange] = useForm({
     user: undefined,
-    title: undefined
+    title: undefined,
   })
+
+
+  const fileInputRef = useRef()
 
 
   const backgroundSelected = (selectedItem) => {
@@ -53,11 +64,39 @@ export const Modal = ({show = false, background, token}) => {
 
   }
 
-  const closeModal = (e) => {
+  const closeModal = (e, exitClick = true) => {
 
     e.preventDefault()
     document.getElementsByTagName("body")[0].style = ""
-    setShowModal(false)
+
+    if(exitClick){
+      setShowModal(false)
+      setModalImage({file: null, image: null})
+    }
+    else {
+      setShowModal(false)
+    } 
+
+  }
+
+  const clickChangeImage =  () => {
+    fileInputRef.current.click()
+  }
+
+  //TODO: Hacerlo un hook
+  const changeImage = async (e) => {
+
+    const file = e.target.files[0]
+
+    if(!file){
+      return
+    }
+
+    const fr = new FileReader()
+
+    fr.onload = () => setModalImage({file, image: fr.result})
+
+    fr.readAsDataURL(file)
 
   }
 
@@ -65,13 +104,33 @@ export const Modal = ({show = false, background, token}) => {
 
     e.preventDefault()
 
+    const toastId = toast.loading('Guardando...')
+
+    setDisable(true)
+
     let background = ""
 
     let image = ""
 
-    for (const item of Object.keys(selected)) {
+    if(!modalImage.file){ 
+      image = user.image
+    }
+    else {
+      image = await uploadImage(modalImage.file)
+    }
+
+    
+    if(!image){
+      return toast.error('Algo salio mal al subir la imagen, intente más tarde', {
+        id: toastId,
+      });
       
-      if(selected[item]){
+    }
+
+
+    for (const item of Object.keys(selected)) {
+    
+      if(selected[item] && background === "" ){
         background = item
       }
 
@@ -96,15 +155,18 @@ export const Modal = ({show = false, background, token}) => {
 
     const { ok, message, updatedUser } = await rawResponse.json()
 
+
     if(!ok){
       setAlert({error: true, success: false, message})
       return
     }
 
+    toast.remove(toastId)
     setUser(updatedUser)
+    setDisable(false)
     setAlert({success: true, error: false, message})
 
-    closeModal(e)
+    closeModal(e, false)
 
   }
 
@@ -117,6 +179,13 @@ export const Modal = ({show = false, background, token}) => {
 
   
   }, [background])
+
+  useEffect(() => {
+
+    setModalImage({image})
+
+  }, [image])
+
 
   return (
     
@@ -138,9 +207,11 @@ export const Modal = ({show = false, background, token}) => {
 
           <div className={styles.imageContainer}>
 
-            <img className={styles.modalImage} src="https://www.wallpaperuse.com/wallp/54-548934_m.jpg" />
+            <img className={styles.modalImage} src={modalImage.image ?? user.image} alt="Imagen de usuario"/>
             
-            <button className={`${buttonStyles.form__button} ${buttonStyles.buttonBlueModal}`}>Cambiar</button>
+            <button onClick={clickChangeImage} className={`${buttonStyles.form__button} ${buttonStyles.buttonBlueModal}`}>Cambiar</button>
+
+            <input ref={fileInputRef} onChange={changeImage} type="file" accept="image/png, image/jpeg" style={{display: 'none'}} />
             
           </div>
 
@@ -178,7 +249,7 @@ export const Modal = ({show = false, background, token}) => {
 
             </div>
 
-            <button className={`${buttonStyles.form__button} ${buttonStyles["form__button--create"]}`}>
+            <button disabled={disable} className={`${buttonStyles.form__button} ${buttonStyles["form__button--create"]}`}>
               Guardar
             </button>
 

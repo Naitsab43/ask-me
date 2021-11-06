@@ -49,11 +49,11 @@ export const ProfileInfo = ({showButton=false, token }) => {
 
     <>
 
-      <Modal show={showModal} background={user.background} token={token}/>
+      <Modal show={showModal} background={user.background} image={user.image} token={token}/>
 
       <div className={`${styles.profile} ${profileBg}`}>
 
-        <img className={styles.profileImage} src="https://www.wallpaperuse.com/wallp/54-548934_m.jpg" />
+        <img className={styles.profileImage} src={user.image} alt="Imagen de usuario" />
 
         <div className={styles.profileInfoContainer}>
 

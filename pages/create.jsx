@@ -16,7 +16,8 @@ const create = () => {
     user: "",
     password: "",
     title: "",
-    background: "default"
+    background: "default",
+    image: "https://res.cloudinary.com/dft4yirox/image/upload/v1636180312/QA%20Anonymous/ms9v13bcnse8y1epzeyz.png"
   });
 
   const [disabled, setDisable] = useState(false)

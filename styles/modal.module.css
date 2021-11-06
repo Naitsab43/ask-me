@@ -51,7 +51,9 @@
 }
 
 .modalImage {
+  background-size: contain;
   width: 180px;
+  height: 180px;
   border-radius: 100px;
 }
 
@@ -103,6 +105,7 @@
   
   .modalImage {
     width: 220px;
+    height: 220px;
     border-radius: 200px;
   }
 
@@ -135,6 +138,7 @@
 
   .modalImage {
     width: 230px;
+    height: 230px;
   }
 
   .bgContainer {
