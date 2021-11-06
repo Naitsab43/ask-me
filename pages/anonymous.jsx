@@ -8,7 +8,7 @@ import { useForm } from '../hooks/useForm'
 import { useRouter } from 'next/router'
 import toast, { Toaster } from 'react-hot-toast';
 
-const anonymous = () => {
+const Anonymous = () => {
 
   const [values, handleInputChange] = useForm({
     idQA: "",
@@ -84,4 +84,4 @@ const anonymous = () => {
 
 }
 
-export default anonymous
+export default Anonymous

@@ -10,7 +10,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { AnimatedInput } from '../components/AnimatedInput';
 
 
-const login = () => {
+const Login = () => {
 
   const [values, handleInputChange] = useForm({
     user: "",
@@ -104,4 +104,4 @@ const login = () => {
 
 }
 
-export default login
+export default Login

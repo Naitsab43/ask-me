@@ -54,7 +54,7 @@ export async function getServerSideProps(context) {
   
 }
 
-const profile = ({token, user: userProps}) => {
+const Profile = ({token, user: userProps}) => {
 
   const { isLogged, setIsLogged } = useContext(AuthContext)
   const { setUser } = useContext(UserContext)
@@ -154,4 +154,4 @@ const profile = ({token, user: userProps}) => {
 
 }
 
-export default profile
+export default Profile

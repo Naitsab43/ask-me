@@ -10,7 +10,7 @@ import { useContext, useState } from 'react';
 import { AlertContext } from '../context/AlertContext';
 
 
-const create = () => {
+const Create = () => {
 
   const [values, handleInputChange] = useForm({
     user: "",
@@ -114,4 +114,4 @@ const create = () => {
 
 }
 
-export default create;
+export default Create;
