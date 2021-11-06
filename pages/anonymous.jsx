@@ -24,7 +24,7 @@ const Anonymous = () => {
       return toast.error("Escriba un id valido");
     }
 
-    const { ok } = await fetch(`http://localhost:3000/api/visitprofile/${values.idQA}`, {
+    const { ok } = await fetch(`https://questions-and-answers-naitsab.vercel.app/api/visitprofile/${values.idQA}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json"

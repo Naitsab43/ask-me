@@ -12,7 +12,7 @@ import { AlertContext } from '../../context/AlertContext'
 
 export async function getServerSideProps(context) {
 
-  const rawUser = await fetch(`http://localhost:3000/api/visitprofile/${context.query.id}`, {
+  const rawUser = await fetch(`https://questions-and-answers-naitsab.vercel.app/api/visitprofile/${context.query.id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json"
