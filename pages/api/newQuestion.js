@@ -18,11 +18,12 @@ const handler = async (req, res) => {
 
     await question.save()
 
-    await Users.findByIdAndUpdate( body.idUser, {$push: {questions: question._id}}, {new: true, runValidators: true, context: 'query'}).lean();
+    const user = await Users.findByIdAndUpdate( body.idUser, {$push: {questions: question._id}}, {new: true, runValidators: true, context: 'query'}).populate("questions");
 
     return res.status(200).json({
       ok: true,
-      message: "Pregunta enviada correctamente"
+      message: "Pregunta enviada correctamente",
+      questions: user.questions
     })
 
   }

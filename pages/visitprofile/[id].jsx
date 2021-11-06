@@ -6,6 +6,9 @@ import { ProfileInfo } from '../../components/ProfileInfo'
 import { UnansweredQuestion } from '../../components/UnansweredQuestions'
 import { UserContext } from '../../context/UserContext'
 import { QuestionsContext } from '../../context/QuestionsContext'
+import Head from 'next/head'
+import toast, { Toaster } from 'react-hot-toast'
+import { AlertContext } from '../../context/AlertContext'
 
 export async function getServerSideProps(context) {
 
@@ -38,6 +41,7 @@ const visitprofile = ({user: userProps}) => {
 
   const { setUser } = useContext(UserContext)
   const { questions, setQuestions } = useContext(QuestionsContext)
+  const { alert } = useContext(AlertContext)
 
   useEffect(() => {
     setQuestions(userProps.questions)
@@ -47,10 +51,35 @@ const visitprofile = ({user: userProps}) => {
     setUser(userProps)
   }, [])
 
+  // Alert effect
+  useEffect(() => {
+
+    if(alert.success){
+      toast.success(alert.message);
+    }
+
+    if(alert.error){
+      toast.error(alert.message)
+    }
+
+  }, [alert])
+
 
   return (
 
     <>
+
+    
+      <Head>
+        <title>Visitar Perfil</title>
+      </Head>
+
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 2000,  
+        }}
+      />
 
       <ProfileInfo />
 

@@ -24,7 +24,6 @@ export const uploadImage = async (file) => {
   }
   catch(error) {
     console.error("Error al cargar imagen")
-    console.log(error);
     return null
   }
 
