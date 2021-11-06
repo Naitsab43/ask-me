@@ -27,7 +27,7 @@ export const CreateQuestion = () => {
       setAlert({error: true, success: false, message: "Debe escribir al menos un caracter"})
     }
 
-    const rawResponse = await fetch(`http://localhost:3000/api/newQuestion/`, {
+    const rawResponse = await fetch(`https://questions-and-answers-naitsab.vercel.app/api/newQuestion/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
