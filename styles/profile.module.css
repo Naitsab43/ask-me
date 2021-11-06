@@ -1,6 +1,5 @@
 
 .profile{
-  background-image: url("../assets/cool.png");
   display: flex;
   border: 1px rgb(226, 226, 226) solid;
   flex-direction: column;
@@ -10,12 +9,37 @@
   padding: 15px 0;
   width: 95%;
   min-width: 330px;
+  border-radius: 10px;
+}
+
+.default {
+  background-color: #131313;
+}
+
+.animals{
+  background-image: url("../assets/animals.png");
+}
+
+.cool {
+  background-image: url("../assets/cool.png");
+}
+
+.purple {
+  background-image: url("../assets/purple.png");
+}
+
+.poker {
+  background-image: url("../assets/poker.png");
+}
+
+.fruits {
+  background-image: url("../assets/fruits.png");
 }
 
 .profileImage {
   border-radius: 200px;
-  height: 120px;
-  width: 120px;
+  height: 170px;
+  width: 170px;
   margin-bottom: 10px;
 }
 
@@ -80,8 +104,8 @@
 
 .question-bg__question{
   border-radius: 3px;
-  background-color: rgb(236, 236, 240);
-  box-shadow: 0px 4px 0px #8F8F8F;
+  background-color: rgb(95, 150, 138);
+  box-shadow: 0px 4px 0px #337463;
   font-family: 'Cairo', sans-serif;
   margin-top: 5px;
   padding: 16px 7px;

@@ -10,11 +10,12 @@ import { AnsweredQuestions } from '../../components/AnsweredQuestions'
 
 import { AuthContext } from '../../context/AuthContext'
 import { AlertContext } from '../../context/AlertContext'
+import { UserContext } from '../../context/UserContext'
 import { QuestionsContext } from '../../context/QuestionsContext'
 
 export async function getServerSideProps(context) {
 
-  const rawUser = await fetch(`http://localhost:3000/api/profile/${context.query.id}`, {
+  const rawUser = await fetch(`https://questions-and-answers-naitsab.vercel.app/api/profile/${context.query.id}`, {
     method: "GET",
     headers: {
       "Authorization": context.req.cookies.token,
@@ -23,6 +24,17 @@ export async function getServerSideProps(context) {
   })
 
   const user = await rawUser.json()
+
+  if(user.ok === false) {
+
+    return {
+      props: {
+        user: [],
+        token: null
+      }
+    }
+
+  }
 
   user.questions = user.questions.sort((a) => {
 
@@ -42,18 +54,18 @@ export async function getServerSideProps(context) {
   
 }
 
-const profile = ({token, user}) => {
+const Profile = ({token, user: userProps}) => {
 
   const { isLogged, setIsLogged } = useContext(AuthContext)
+  const { setUser } = useContext(UserContext)
   const { alert } = useContext(AlertContext)
   const { questions, setQuestions } = useContext(QuestionsContext)
-
 
   const router = useRouter()
 
   const verifyToken = async () =>{
 
-    const resp = await fetch("http://localhost:3000/api/tokenIsValid", {
+    const resp = await fetch("https://questions-and-answers-naitsab.vercel.app/api/tokenIsValid", {
       method: "GET",
     });
 
@@ -64,7 +76,6 @@ const profile = ({token, user}) => {
     setIsLogged(true)
 
   }
-
 
   // Auth effect
   useEffect(() => {
@@ -77,7 +88,7 @@ const profile = ({token, user}) => {
 
     verifyToken()
 
-  }, [])
+  }, [router, token, verifyToken])
 
   // Alert effect
   useEffect(() => {
@@ -94,8 +105,13 @@ const profile = ({token, user}) => {
 
   // First fetching from server effect
   useEffect(() => {
-    setQuestions(user.questions)
+    setQuestions(userProps.questions)
   }, [])
+
+  useEffect(() => {
+    setUser(userProps)
+  }, [])
+
 
   return (
 
@@ -112,7 +128,7 @@ const profile = ({token, user}) => {
         }}
       />
       
-      <ProfileInfo showButton {...user}/>
+      <ProfileInfo showButton token={token}/>
 
       
       { questions?.length == 0 && <NotQuestions /> }
@@ -138,4 +154,4 @@ const profile = ({token, user}) => {
 
 }
 
-export default profile
+export default Profile

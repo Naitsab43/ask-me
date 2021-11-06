@@ -8,7 +8,7 @@ import { useForm } from '../hooks/useForm'
 import { useRouter } from 'next/router'
 import toast, { Toaster } from 'react-hot-toast';
 
-const anonymous = () => {
+const Anonymous = () => {
 
   const [values, handleInputChange] = useForm({
     idQA: "",
@@ -24,7 +24,7 @@ const anonymous = () => {
       return toast.error("Escriba un id valido");
     }
 
-    const { ok } = await fetch(`http://localhost:3000/api/visitprofile/${values.idQA}`, {
+    const { ok } = await fetch(`https://questions-and-answers-naitsab.vercel.app/api/visitprofile/${values.idQA}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json"
@@ -84,4 +84,4 @@ const anonymous = () => {
 
 }
 
-export default anonymous
+export default Anonymous

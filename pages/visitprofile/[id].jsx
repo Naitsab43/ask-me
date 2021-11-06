@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { AnsweredQuestions } from '../../components/AnsweredQuestions'
 import { CreateQuestion } from '../../components/CreateQuestion'
 import { NotQuestions } from '../../components/NotQuestions'
 import { ProfileInfo } from '../../components/ProfileInfo'
 import { UnansweredQuestion } from '../../components/UnansweredQuestions'
+import { UserContext } from '../../context/UserContext'
+import { QuestionsContext } from '../../context/QuestionsContext'
+import Head from 'next/head'
+import toast, { Toaster } from 'react-hot-toast'
+import { AlertContext } from '../../context/AlertContext'
 
 export async function getServerSideProps(context) {
 
-  const rawUser = await fetch(`http://localhost:3000/api/visitprofile/${context.query.id}`, {
+  const rawUser = await fetch(`https://questions-and-answers-naitsab.vercel.app/api/visitprofile/${context.query.id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json"
@@ -32,16 +37,51 @@ export async function getServerSideProps(context) {
   
 }
 
-const visitprofile = ({user}) => {
+const VisitProfile = ({user: userProps}) => {
 
-  const { questions } = user
+  const { setUser } = useContext(UserContext)
+  const { questions, setQuestions } = useContext(QuestionsContext)
+  const { alert } = useContext(AlertContext)
+
+  useEffect(() => {
+    setQuestions(userProps.questions)
+  }, [])
+
+  useEffect(() => {
+    setUser(userProps)
+  }, [])
+
+  // Alert effect
+  useEffect(() => {
+
+    if(alert.success){
+      toast.success(alert.message);
+    }
+
+    if(alert.error){
+      toast.error(alert.message)
+    }
+
+  }, [alert])
 
 
   return (
 
     <>
 
-      <ProfileInfo {...user} />
+    
+      <Head>
+        <title>Visitar Perfil</title>
+      </Head>
+
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 2000,  
+        }}
+      />
+
+      <ProfileInfo />
 
       <CreateQuestion />
 
@@ -67,4 +107,4 @@ const visitprofile = ({user}) => {
 
 }
 
-export default visitprofile
+export default VisitProfile

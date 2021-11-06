@@ -6,11 +6,17 @@ import buttonStyles from '../styles/buttons.module.css'
 import { AlertContext } from '../context/AlertContext'
 import { ModalContext } from '../context/ModalContext'
 import { Modal } from './Modal'
+import { profileBackground } from '../helpers/profileBackground'
+import { UserContext } from '../context/UserContext'
 
-export const ProfileInfo = ({user, title, image, _id, showButton=false }) => {
+export const ProfileInfo = ({showButton=false, token }) => {
 
-  const { alert, setAlert } = useContext(AlertContext)
+  const { setAlert } = useContext(AlertContext)
+  const { user } = useContext(UserContext)
   const { showModal, setShowModal } = useContext(ModalContext)
+
+
+  const profileBg = profileBackground(user.background, styles)
 
 
   const copyToClipboard = e => {
@@ -18,39 +24,42 @@ export const ProfileInfo = ({user, title, image, _id, showButton=false }) => {
     e.preventDefault()
     
     const aux = document.createElement("input")
-    aux.setAttribute("value", _id);
+    aux.setAttribute("value", user._id);
     document.body.appendChild(aux);
     aux.select();
     document.execCommand("copy");
     document.body.removeChild(aux);
 
     setAlert({
-      ...alert,
       success: true,
+      error: false,
       message: "Se ha copiado el ID"
     })
 
   }
 
+
   const editProfile = () => {
+    document.getElementsByTagName("body")[0].style = "overflow: hidden;"
     setShowModal(true)
   }
+
 
   return (
 
     <>
 
-      <Modal show={showModal} />
+      <Modal show={showModal} background={user.background} image={user.image} token={token}/>
 
-      <div className={styles.profile}>
+      <div className={`${styles.profile} ${profileBg}`}>
 
-        <img className={styles.profileImage} src="https://play-lh.googleusercontent.com/IlnBc1ca_20U3qacgXrkXM_opQK9gvTXryaPSCCPCanD_o_hPdgPQkhQ6-DcsfSZ9PU9=s360" />
+        <img className={styles.profileImage} src={user.image} alt="Imagen de usuario" />
 
         <div className={styles.profileInfoContainer}>
 
           <div className={styles.infoGroup}>
-            <h2 className={styles.profileTitle}>{ title }</h2>
-            <span className={styles.profileUser}>{ user }</span>
+            <h2 className={styles.profileTitle}>{ user.title }</h2>
+            <span className={styles.profileUser}>{ user.user }</span>
           </div>
           
           {

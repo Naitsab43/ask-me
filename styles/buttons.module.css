@@ -7,6 +7,7 @@
   height: 80px;
   width: 90%;
   margin: 8px 0;
+  cursor: pointer;
 }
 
 .form__button:disabled{
@@ -16,7 +17,7 @@
 
 .form__button--create{
   font-weight: 700;
-  height: 75px;
+  height: 60px;
   margin: 40px auto;
   background-color:#37da3d;
   box-shadow: 0px 4px 0px #1B962F;
@@ -62,6 +63,13 @@
   box-shadow: 0px 4px 0px #222E99;
 }
 
+.buttonBlueModal{
+  background-color:#4148E6;
+  box-shadow: 0px 4px 0px #222E99;
+  height: 50px;
+  font-size: 18px;
+}
+
 .form__button--orange{
   background-color: #DA6946;
   box-shadow: 0px 4px 0px #8E442C;
@@ -74,8 +82,8 @@
     border-radius: 11px;
     font-weight: 600;
     color: white;
-    font-size: 26px;
-    height: 95px;
+    font-size: 24px;
+    height: 80px;
     width: 90%;
   }
 
@@ -87,22 +95,27 @@
 
   .form__button--copy{
     font-weight: 700;
-    font-size: 20px;
-    height: 65px;
+    font-size: 18px;
+    height: 55px;
     margin: 40px auto 20px;
   }
 
   .form__button--edit{
     font-weight: 700;
-    font-size: 20px;
-    height: 65px;
+    font-size: 18px;
+    height: 55px;
     margin: 0px auto 10px;
   }
 
   .form__button--create {
     max-width: 550px;
-    height: 80px;
+    height: 60px;
     font-size: 22px;
+  }
+
+  .buttonBlueModal{
+    height: 55px;
+    font-size: 18px;
   }
 
 }
@@ -126,7 +139,7 @@
 
   .form__button--copy{
     font-weight: 700;
-    height: 65px;
+    height: 60px;
     font-size: 18px;
     margin: 40px auto 20px;
   }
@@ -134,13 +147,19 @@
   .form__button--edit{
     font-weight: 700;
     font-size: 18px;
-    height: 65px;
+    height: 60px;
     margin: 0px auto 10px;
   }
 
   .form__button--create{
-    height: 90px;
-    max-width: 700px;
+    height: 60px;
+    font-size: 24px;
+    max-width: 550px;
+  }
+
+  .buttonBlueModal{
+    height: 60px;
+    font-size: 22px;
   }
 
 }
@@ -160,21 +179,21 @@
   
   .form__button--copy{
     font-weight: 700;
-    font-size: 20px;
-    height: 65px;
+    font-size: 18px;
+    height: 60px;
     margin: 40px auto 20px;
   }
 
   .form__button--edit{
     font-weight: 700;
     font-size: 18px;
-    height: 65px;
+    height: 60px;
     margin: 0px auto 10px;
   }
 
   .form__button--create{
     font-size: 24px;
-    height: 70px;
+    height: 60px;
     max-width: 500px;
     transition: none;
   }
@@ -201,6 +220,11 @@
     margin-right: 60px;
     transition: margin-right 0.2s ease, font-size 0.2s ease;
 
+  }
+
+  .buttonBlueModal{
+    height: 60px;
+    font-size: 22px;
   }
 
 }

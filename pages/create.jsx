@@ -10,12 +10,14 @@ import { useContext, useState } from 'react';
 import { AlertContext } from '../context/AlertContext';
 
 
-const create = () => {
+const Create = () => {
 
   const [values, handleInputChange] = useForm({
     user: "",
     password: "",
-    title: ""
+    title: "",
+    background: "default",
+    image: "https://res.cloudinary.com/dft4yirox/image/upload/v1636180312/QA%20Anonymous/ms9v13bcnse8y1epzeyz.png"
   });
 
   const [disabled, setDisable] = useState(false)
@@ -42,7 +44,7 @@ const create = () => {
 
     setDisable(true)
 
-    const resp = await fetch("http://localhost:3000/api/newUser", {
+    const resp = await fetch("https://questions-and-answers-naitsab.vercel.app/api/newUser", {
       method: "POST",
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(values)
@@ -112,4 +114,4 @@ const create = () => {
 
 }
 
-export default create;
+export default Create;

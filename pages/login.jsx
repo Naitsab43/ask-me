@@ -10,18 +10,17 @@ import toast, { Toaster } from 'react-hot-toast';
 import { AnimatedInput } from '../components/AnimatedInput';
 
 
-const login = () => {
+const Login = () => {
 
   const [values, handleInputChange] = useForm({
-    user: "Bastian",
-    password: "1234567"
+    user: "",
+    password: ""
   })
 
   const [disabled, setDisable] = useState(false)
   const { setAlert } = useContext(AlertContext);
   const router = useRouter();
 
-  const onChange = useCallback(() => handleInputChange, [])
 
   const loginUser = async (e) => {
 
@@ -36,7 +35,7 @@ const login = () => {
 
     setDisable(true)
 
-    const resp = await fetch("http://localhost:3000/api/login", {
+    const resp = await fetch("https://questions-and-answers-naitsab.vercel.app/api/login", {
       method: "POST",
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(values)
@@ -83,15 +82,21 @@ const login = () => {
         }}
       />
 
-      <form className={styles.form} autoComplete="off" >
+      <div style={{
+        marginTop: 80
+      }}>
 
-        <AnimatedInput handleInputChange={onChange} label="Nombre" name="user" type="text" />
+        <form className={styles.form} autoComplete="off" >
+        
+          <AnimatedInput handleInputChange={handleInputChange} label="Nombre" name="user" type="text" />
+        
+          <AnimatedInput handleInputChange={handleInputChange} label="Contraseña" name="password" type="password" />
+        
+          <button disabled={disabled} onClick={e => loginUser(e)} className={`${buttonStyles.form__button} ${buttonStyles["form__button--create"]}`}> { disabled ? "Cargando..." : "Ingresar a mi Q&A" } </button>
+        
+        </form>
 
-        <AnimatedInput handleInputChange={onChange} label="Contraseña" name="password" type="password" />
-
-        <button disabled={disabled} onClick={e => loginUser(e)} className={`${buttonStyles.form__button} ${buttonStyles["form__button--create"]}`}> { disabled ? "Cargando..." : "Ingresar a mi Q&A" } </button>
-
-      </form>
+      </div>
     
     </>
     
@@ -99,4 +104,4 @@ const login = () => {
 
 }
 
-export default login
+export default Login

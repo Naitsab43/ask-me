@@ -6,6 +6,7 @@ import { useForm } from '../hooks/useForm'
 import { AlertContext } from '../context/AlertContext'
 import { useContext } from 'react'
 import { QuestionsContext } from '../context/QuestionsContext'
+import { UserContext } from '../context/UserContext'
 
 export const UnansweredQuestion = ({isLogged, question}) => {
   
@@ -14,7 +15,8 @@ export const UnansweredQuestion = ({isLogged, question}) => {
   })
 
   const { setAlert } = useContext(AlertContext)
-  const { questions, setQuestions } = useContext(QuestionsContext)
+  const { setQuestions } = useContext(QuestionsContext)
+  const { user } = useContext(UserContext)
 
   const { question: aQuestion } = question;
 
@@ -23,7 +25,19 @@ export const UnansweredQuestion = ({isLogged, question}) => {
 
     e.preventDefault()
 
-    const { ok, message, updatedQuestion } = await fetch(`http://localhost:3000/api/profile/sendAnswer`, {
+    if(values.answer.length < 1){
+
+      setAlert({
+        error: true,
+        success: false,
+        message: "Debe escribir al menos un caracter"
+      })
+
+      return
+
+    }
+
+    const { ok, message, updatedQuestion } = await fetch(`https://questions-and-answers-naitsab.vercel.app/api/profile/sendAnswer`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -35,13 +49,28 @@ export const UnansweredQuestion = ({isLogged, question}) => {
     if(ok){
 
  
-      setQuestions(questions => questions.map(question => {
+      setQuestions(questions => {
+
+        let updatedQuestions = questions.map(question => {
         
-        if(question._id === updatedQuestion._id) return updatedQuestion
+          if(question._id === updatedQuestion._id) return updatedQuestion
+  
+          return question
+  
+        })
 
-        return question
+        updatedQuestions = updatedQuestions.sort((a) => {
 
-      }))
+          if(a.answer === null) return -1
+          
+          return 1
+      
+        })
+
+
+        return updatedQuestions
+
+      })
 
  
       return setAlert({
@@ -86,7 +115,7 @@ export const UnansweredQuestion = ({isLogged, question}) => {
 
           :
 
-          <p className={styles["question__not-answer"]}>Bastian aún no a respondido esta pregunta</p>
+          <p className={styles["question__not-answer"]}>{ user.user } aún no a respondido esta pregunta</p>
 
         
 
