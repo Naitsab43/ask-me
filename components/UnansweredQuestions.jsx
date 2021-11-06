@@ -23,6 +23,18 @@ export const UnansweredQuestion = ({isLogged, question}) => {
 
     e.preventDefault()
 
+    if(values.answer.length < 1){
+
+      setAlert({
+        error: true,
+        success: false,
+        message: "Debe escribir al menos un caracter"
+      })
+
+      return
+
+    }
+
     const { ok, message, updatedQuestion } = await fetch(`http://localhost:3000/api/profile/sendAnswer`, {
       method: "POST",
       headers: {

@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { AnsweredQuestions } from '../../components/AnsweredQuestions'
 import { CreateQuestion } from '../../components/CreateQuestion'
 import { NotQuestions } from '../../components/NotQuestions'
 import { ProfileInfo } from '../../components/ProfileInfo'
 import { UnansweredQuestion } from '../../components/UnansweredQuestions'
+import { UserContext } from '../../context/UserContext'
+import { QuestionsContext } from '../../context/QuestionsContext'
 
 export async function getServerSideProps(context) {
 
@@ -32,16 +34,25 @@ export async function getServerSideProps(context) {
   
 }
 
-const visitprofile = ({user}) => {
+const visitprofile = ({user: userProps}) => {
 
-  const { questions } = user
+  const { setUser } = useContext(UserContext)
+  const { questions, setQuestions } = useContext(QuestionsContext)
+
+  useEffect(() => {
+    setQuestions(userProps.questions)
+  }, [])
+
+  useEffect(() => {
+    setUser(userProps)
+  }, [])
 
 
   return (
 
     <>
 
-      <ProfileInfo {...user} />
+      <ProfileInfo />
 
       <CreateQuestion />
 

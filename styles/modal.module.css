@@ -1,23 +1,47 @@
 
 .modal {
-  position: fixed;
   z-index: 100;
+  position: fixed;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
-  margin: auto;
-  background-color: black;
+  background-color: rgb(31, 31, 31);
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 400px;
   overflow-y: scroll;
+}
+
+.topModal{
+  height: 60px;
+  width: 100%;
+  background-color: rgb(12, 12, 12);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 15px;
+}
+
+.closeButton {
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  height: 25px;
+  width: 25px;
+  border-radius: 50px;
+  background-color: rgb(49, 49, 49);
+  margin-left: 10px;
 }
 
 .title {
   color: white;
-  font-size: 30px;
+  margin-left: 40px;
+  font-size: 18px;
 }
 
 .imageContainer {
@@ -27,7 +51,9 @@
 }
 
 .modalImage {
+  background-size: contain;
   width: 180px;
+  height: 180px;
   border-radius: 100px;
 }
 
@@ -36,34 +62,92 @@
   height: 230px;
   width: 90%;
   grid-template-columns: 50% 50%;
+  grid-template-rows: 33.3% 33.3% 33.3%; 
 }
 
-
-.bgOption1 {
-  border-radius: 10px;
-  background-image: url("../assets/cool.png");
+.options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-size: 700px;
   margin: 5px;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
-.bgOption2 {
+.selected {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.733);
+  color: white;
   border-radius: 10px;
-  background-image: url("../assets/poker.png");
-  background-size: 800px;
-  background-position: 335px 345px;
-  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.bgOption3 {
+.selected div{
   border-radius: 10px;
-  background-image: url("../assets/purple.png");
-  background-size: 1080px;
-  margin: 5px;
+  height: 40px;
+  width: 80%;
+  background-color: rgb(41, 41, 41);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 400;
 }
 
-.bgOption4 {
-  border-radius: 10px;
-  background-image: url("../assets/fruits.png");
-  background-size: 1080px;
-  margin: 5px;
+@media screen and (min-width: 576px) {
+
+  .title {
+    font-size: 20px;
+  }
+  
+  .modalImage {
+    width: 220px;
+    height: 220px;
+    border-radius: 200px;
+  }
+
+  .bgContainer {
+    display: grid;
+    height: 300px;
+    width: 560px;
+    grid-template-columns: 50% 50%;
+  }
+
+  .options {
+    background-size: 700px;
+    margin: 5px;
+  }
+  
+  .selected div{
+    width: 60%;
+  }
+  
 }
+
+@media screen and (min-width: 825px) {
+
+  
+  .modal {
+    margin: 20px auto;
+    border-radius: 15px;
+    width: 700px;
+  }
+
+  .modalImage {
+    width: 230px;
+    height: 230px;
+  }
+
+  .bgContainer {
+    display: grid;
+    height: 300px;
+    width: 500px;
+    grid-template-columns: 50% 50%;
+  }
+
+}
+
+@media screen and (min-width: 1200px) {}

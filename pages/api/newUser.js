@@ -51,7 +51,8 @@ const handler = async (req, res) => {
     let user = new Users({
       user: body.user,
       password: encryptPassword,
-      image: null,
+      background: "default",
+      image: body.image,
       title: body.title,
       questions: []
     });
