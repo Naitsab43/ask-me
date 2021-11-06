@@ -15,7 +15,7 @@ import { QuestionsContext } from '../../context/QuestionsContext'
 
 export async function getServerSideProps(context) {
 
-  const rawUser = await fetch(`https://questions-and-answers-naitsab.vercel.app/api/profile/${context.query.id}`, {
+  const rawUser = await fetch(`https://questions-and-answers-kohl.vercel.app/api/profile/${context.query.id}`, {
     method: "GET",
     headers: {
       "Authorization": context.req.cookies.token,
@@ -65,7 +65,7 @@ const Profile = ({token, user: userProps}) => {
 
   const verifyToken = async () =>{
 
-    const resp = await fetch("https://questions-and-answers-naitsab.vercel.app/api/tokenIsValid", {
+    const resp = await fetch("https://questions-and-answers-kohl.vercel.app/api/tokenIsValid", {
       method: "GET",
     });
 

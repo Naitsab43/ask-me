@@ -44,7 +44,7 @@ const Create = () => {
 
     setDisable(true)
 
-    const resp = await fetch("https://questions-and-answers-naitsab.vercel.app/api/newUser", {
+    const resp = await fetch("https://questions-and-answers-kohl.vercel.app/api/newUser", {
       method: "POST",
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(values)

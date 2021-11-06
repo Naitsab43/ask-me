@@ -143,7 +143,7 @@ export const Modal = ({show = false, background, image, token}) => {
       image
     }
 
-    const rawResponse = await fetch(`https://questions-and-answers-naitsab.vercel.app/api/profile/updateProfile/${router.query.id}`, {
+    const rawResponse = await fetch(`https://questions-and-answers-kohl.vercel.app/api/profile/updateProfile/${router.query.id}`, {
       method: "POST",
       headers: {
         "Authorization": token,

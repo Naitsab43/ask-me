@@ -37,7 +37,7 @@ export const UnansweredQuestion = ({isLogged, question}) => {
 
     }
 
-    const { ok, message, updatedQuestion } = await fetch(`https://questions-and-answers-naitsab.vercel.app/api/profile/sendAnswer`, {
+    const { ok, message, updatedQuestion } = await fetch(`https://questions-and-answers-kohl.vercel.app/api/profile/sendAnswer`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
