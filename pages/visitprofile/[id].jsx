@@ -37,7 +37,7 @@ export async function getServerSideProps(context) {
   
 }
 
-const visitprofile = ({user: userProps}) => {
+const VisitProfile = ({user: userProps}) => {
 
   const { setUser } = useContext(UserContext)
   const { questions, setQuestions } = useContext(QuestionsContext)
@@ -107,4 +107,4 @@ const visitprofile = ({user: userProps}) => {
 
 }
 
-export default visitprofile
+export default VisitProfile
