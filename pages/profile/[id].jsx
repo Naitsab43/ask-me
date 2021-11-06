@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react'
 import Head from 'next/head'
-import router, { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import toast, { Toaster } from 'react-hot-toast'
 
 import { ProfileInfo } from '../../components/ProfileInfo'
@@ -57,7 +57,7 @@ export async function getServerSideProps(context) {
 const profile = ({token, user: userProps}) => {
 
   const { isLogged, setIsLogged } = useContext(AuthContext)
-  const { user, setUser } = useContext(UserContext)
+  const { setUser } = useContext(UserContext)
   const { alert } = useContext(AlertContext)
   const { questions, setQuestions } = useContext(QuestionsContext)
 
