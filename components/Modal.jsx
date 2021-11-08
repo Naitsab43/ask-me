@@ -12,6 +12,7 @@ import { ModalContext } from '../context/ModalContext'
 import { UserContext } from '../context/UserContext'
 import { uploadImage } from '../helpers/uploadImage'
 import toast from 'react-hot-toast'
+import config from '../config'
 
 export const Modal = ({show = false, background, image, token}) => {
 
@@ -143,7 +144,7 @@ export const Modal = ({show = false, background, image, token}) => {
       image
     }
 
-    const rawResponse = await fetch(`https://questions-and-answers-kohl.vercel.app/api/profile/updateProfile/${router.query.id}`, {
+    const rawResponse = await fetch(`${config.APIURL}/profile/updateProfile/${router.query.id}`, {
       method: "POST",
       headers: {
         "Authorization": token,

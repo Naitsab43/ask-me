@@ -33,7 +33,7 @@ export const useNavColor = () => {
   switch(pathname){
 
     case "/":
-      titleNav = "Q&A"
+      titleNav = "Askme"
       break;
 
     case "/create":

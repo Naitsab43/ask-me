@@ -20,7 +20,7 @@ export default function Home() {
     <>
 
       <Head>
-        <title>Home</title>
+        <title>Home - Askme</title>
       </Head>
 
       <div className={styles["union-info-buttons"]}>

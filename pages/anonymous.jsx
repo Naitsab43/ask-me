@@ -7,6 +7,7 @@ import Head from 'next/head'
 import { useForm } from '../hooks/useForm'
 import { useRouter } from 'next/router'
 import toast, { Toaster } from 'react-hot-toast';
+import config from '../config'
 
 const Anonymous = () => {
 
@@ -24,7 +25,7 @@ const Anonymous = () => {
       return toast.error("Escriba un id valido");
     }
 
-    const { ok } = await fetch(`https://questions-and-answers-kohl.vercel.app/api/visitprofile/${values.idQA}`, {
+    const { ok } = await fetch(`${config.APIURL}/visitprofile/${values.idQA}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json"

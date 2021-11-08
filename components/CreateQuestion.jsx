@@ -7,6 +7,7 @@ import { useContext } from 'react'
 import { AlertContext } from '../context/AlertContext'
 import { useRouter } from 'next/router'
 import { QuestionsContext } from '../context/QuestionsContext'
+import config from '../config'
 
 export const CreateQuestion = () => {
 
@@ -27,7 +28,7 @@ export const CreateQuestion = () => {
       setAlert({error: true, success: false, message: "Debe escribir al menos un caracter"})
     }
 
-    const rawResponse = await fetch(`https://questions-and-answers-kohl.vercel.app/api/newQuestion`, {
+    const rawResponse = await fetch(`${config.APIURL}/newQuestion`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

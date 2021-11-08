@@ -12,10 +12,11 @@ import { AuthContext } from '../../context/AuthContext'
 import { AlertContext } from '../../context/AlertContext'
 import { UserContext } from '../../context/UserContext'
 import { QuestionsContext } from '../../context/QuestionsContext'
+import config from '../../config'
 
 export async function getServerSideProps(context) {
 
-  const rawUser = await fetch(`https://questions-and-answers-kohl.vercel.app/api/profile/${context.query.id}`, {
+  const rawUser = await fetch(`${process.env.APIURL}/profile/${context.query.id}`, {
     method: "GET",
     headers: {
       "Authorization": context.req.cookies.token,
@@ -65,7 +66,7 @@ const Profile = ({token, user: userProps}) => {
 
   const verifyToken = async () =>{
 
-    const resp = await fetch("https://questions-and-answers-kohl.vercel.app/api/tokenIsValid", {
+    const resp = await fetch(`${config.APIURL}/tokenIsValid`, {
       method: "GET",
     });
 

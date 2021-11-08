@@ -8,6 +8,7 @@ import { useForm } from '../hooks/useForm';
 import { useRouter } from 'next/router';
 import { useContext, useState } from 'react';
 import { AlertContext } from '../context/AlertContext';
+import config from '../config';
 
 
 const Create = () => {
@@ -44,7 +45,7 @@ const Create = () => {
 
     setDisable(true)
 
-    const resp = await fetch("https://questions-and-answers-kohl.vercel.app/api/newUser", {
+    const resp = await fetch(`${config.APIURL}/newUser`, {
       method: "POST",
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(values)

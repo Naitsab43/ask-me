@@ -3,11 +3,12 @@ import buttonStyles from '../styles/buttons.module.css'
 
 import Head from 'next/head';
 import { useForm } from '../hooks/useForm';
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { AlertContext } from '../context/AlertContext';
 import toast, { Toaster } from 'react-hot-toast';
 import { AnimatedInput } from '../components/AnimatedInput';
+import config from '../config';
 
 
 const Login = () => {
@@ -35,7 +36,8 @@ const Login = () => {
 
     setDisable(true)
 
-    const resp = await fetch("https://questions-and-answers-kohl.vercel.app/api/login", {
+
+    const resp = await fetch(`${config.APIURL}/login`, {
       method: "POST",
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(values)

@@ -7,6 +7,7 @@ import { AlertContext } from '../context/AlertContext'
 import { useContext } from 'react'
 import { QuestionsContext } from '../context/QuestionsContext'
 import { UserContext } from '../context/UserContext'
+import config from '../config'
 
 export const UnansweredQuestion = ({isLogged, question}) => {
   
@@ -37,7 +38,7 @@ export const UnansweredQuestion = ({isLogged, question}) => {
 
     }
 
-    const { ok, message, updatedQuestion } = await fetch(`https://questions-and-answers-kohl.vercel.app/api/profile/sendAnswer`, {
+    const { ok, message, updatedQuestion } = await fetch(`${config.APIURL}/profile/sendAnswer`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
