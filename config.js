@@ -10,7 +10,7 @@ if(process.env.NODE_ENV === "development"){
 else {
 
   config = {
-    APIURL: "https://ask-me.social/api"
+    APIURL: "https://www.ask-me.social/api"
   }
 
 }
