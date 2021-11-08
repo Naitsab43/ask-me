@@ -4,7 +4,7 @@ export const useForm = (initialState = {}) => {
 
   const [values, setValues] = useState(initialState)
 
-  const reset = () =>{
+  const reset = () => {
     setValues(initialState)
   }
 
@@ -12,7 +12,7 @@ export const useForm = (initialState = {}) => {
 
     setValues({
       ...values,
-      [target.name]: target.value  // Le asigna la propiedad el nombre en donde se escribe y el valor que se escribe
+      [target.name]: target.value 
     });
 
   };

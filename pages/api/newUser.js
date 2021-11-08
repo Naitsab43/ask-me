@@ -72,6 +72,8 @@ const handler = async (req, res) => {
       message: "Algo salio mal, intente nuevamente",
       error
     })
+
+    console.log(error)
   }
   
 };

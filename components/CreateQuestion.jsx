@@ -11,7 +11,7 @@ import config from '../config'
 
 export const CreateQuestion = () => {
 
-  const [ values, handleInputChange ] =  useForm({
+  const [ values, handleInputChange, reset ] =  useForm({
     question: ""
   })
 
@@ -46,6 +46,7 @@ export const CreateQuestion = () => {
     }
 
     setQuestions(questions)
+    reset()
     setAlert({error: false, success: true, message})
 
   } 
@@ -56,7 +57,7 @@ export const CreateQuestion = () => {
   
       <form className={createStyles.form} onSubmit={sendQuestion}>
 
-        <input onChange={handleInputChange} className={`${inputStyles.form__input} ${inputStyles["form__input--answer"]}`} name="question" type="text" placeholder="Ingrese una pregunta..." autoComplete="off" />
+        <input onChange={handleInputChange} className={`${inputStyles.form__input} ${inputStyles["form__input--answer"]}`} name="question" value={values.question} type="text" placeholder="Ingrese una pregunta..." autoComplete="off" />
 
         <button className={buttonStyles["button-answer"]}>Enviar pregunta</button>
 
