@@ -89,7 +89,7 @@ const Profile = ({token, user: userProps}) => {
 
     verifyToken()
 
-  }, [router, token, verifyToken])
+  }, [router, token])
 
   // Alert effect
   useEffect(() => {
