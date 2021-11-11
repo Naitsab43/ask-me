@@ -32,7 +32,7 @@ export const Modal = ({show = false, background, image, token}) => {
     image: null
   })
 
-  const [disable, setDisable] = useState()
+  const [disable, setDisable] = useState(false)
 
   const { setShowModal } = useContext(ModalContext)
   const { user, setUser } = useContext(UserContext)
@@ -251,7 +251,7 @@ export const Modal = ({show = false, background, image, token}) => {
             </div>
 
             <button disabled={disable} className={`${buttonStyles.form__button} ${buttonStyles["form__button--create"]}`}>
-              Guardar
+              { disabled ? "Guardando..." : "Guardar" }
             </button>
 
           </form>

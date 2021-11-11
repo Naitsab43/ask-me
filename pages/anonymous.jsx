@@ -8,12 +8,18 @@ import { useForm } from '../hooks/useForm'
 import { useRouter } from 'next/router'
 import toast, { Toaster } from 'react-hot-toast';
 import config from '../config'
+import { useContext, useState } from 'react'
+import { AlertContext } from '../context/AlertContext'
 
 const Anonymous = () => {
 
   const [values, handleInputChange] = useForm({
     idQA: "",
   })
+
+  const [disabled, setDisable] = useState(false)
+
+  const { setAlert } = useContext(AlertContext)
 
   const router = useRouter();
 
@@ -25,6 +31,8 @@ const Anonymous = () => {
       return toast.error("Escriba un id valido");
     }
 
+    setDisable(true)
+
     const { ok } = await fetch(`${config.APIURL}/visitprofile/${values.idQA}`, {
       method: "GET",
       headers: {
@@ -32,7 +40,10 @@ const Anonymous = () => {
       }
     }).then(resp => resp.json())
 
+    setDisable(false)
+
     if(ok){
+      setAlert({success: true, error: false, message: "Se ha visitado el perfil correctamente"})
       return router.push(`/visitprofile/${values.idQA}`)
     }
 
@@ -74,7 +85,7 @@ const Anonymous = () => {
 
         </div>
 
-        <button onClick={e => enterAnonymous(e)} className={`${buttonStyles.form__button} ${buttonStyles["form__button--create"]}`}>Ingresar ID</button>
+        <button disabled={disabled} onClick={e => enterAnonymous(e)} className={`${buttonStyles.form__button} ${buttonStyles["form__button--create"]}`}>{ disabled ? "Cargando..." : "Ingresar ID" }</button>
 
       </form>
           

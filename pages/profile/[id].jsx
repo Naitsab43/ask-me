@@ -120,8 +120,6 @@ const Profile = ({token, user: userProps}) => {
 
       <Head>
         <title>Mi perfil</title>
-        <meta property="og:image" content={userProps.image} />
-        <meta name="og:description" content={`Perfil de ${userProps.name}`} />
       </Head>
 
       <Toaster
