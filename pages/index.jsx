@@ -21,8 +21,8 @@ export default function Home() {
 
       <Head>
         <title>Home - Askme</title>
-        <meta property="og:image" content="img/home-page" />
-        <meta name="og:description" content="Haz preguntas anonimante a tus amigos con askme o crea un perfil para recibir preguntas" />
+        <meta property="og:image" content="img/home-page.png" />
+        <meta name="og:description" content="Haz preguntas anonimante a tus amigos con askme o crea un perfil para recibir preguntas." />
       </Head>
 
       <div className={styles["union-info-buttons"]}>
