@@ -21,7 +21,6 @@ export default function Home() {
 
       <Head>
         <title>Home - Askme</title>
-        <meta property="og:image" content="https://res.cloudinary.com/dft4yirox/image/upload/v1636608976/QA%20Anonymous/oyj1r0bodenvit8pkucx.png" />
         <meta name="og:description" content="Haz preguntas anonimante a tus amigos con askme o crea un perfil para recibir preguntas." />
       </Head>
 

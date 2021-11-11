@@ -32,7 +32,7 @@ export const Modal = ({show = false, background, image, token}) => {
     image: null
   })
 
-  const [disable, setDisable] = useState(false)
+  const [disabled, setDisabled] = useState(false)
 
   const { setShowModal } = useContext(ModalContext)
   const { user, setUser } = useContext(UserContext)
@@ -107,7 +107,7 @@ export const Modal = ({show = false, background, image, token}) => {
 
     const toastId = toast.loading('Guardando...')
 
-    setDisable(true)
+    setDisabled(true)
 
     let background = ""
 
@@ -164,7 +164,7 @@ export const Modal = ({show = false, background, image, token}) => {
 
     toast.remove(toastId)
     setUser(updatedUser)
-    setDisable(false)
+    setDisabled(false)
     setAlert({success: true, error: false, message})
 
     closeModal(e, false)
