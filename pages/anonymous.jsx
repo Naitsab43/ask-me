@@ -40,12 +40,13 @@ const Anonymous = () => {
       }
     }).then(resp => resp.json())
 
-    setDisable(false)
-
+  
     if(ok){
       setAlert({success: true, error: false, message: "Se ha visitado el perfil correctamente"})
       return router.push(`/visitprofile/${values.idQA}`)
     }
+
+    setDisable(false)
 
     return toast.error("Escriba un id valido");
 

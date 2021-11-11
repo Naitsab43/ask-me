@@ -71,9 +71,9 @@ const VisitProfile = ({user: userProps}) => {
 
     
       <Head>
-        <title>Visitar Perfil</title>
+        <title>Visitando Perfil</title>
         <meta property="og:image" content={userProps.image} />
-        <meta name="og:description" content={`Perfil de ${userProps.name}`} />
+        <meta name="og:description" content={`Perfil de ${userProps.user}, ¡Enviale una pregunta!`} />
       </Head>
 
       <Toaster
