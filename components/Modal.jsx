@@ -250,7 +250,7 @@ export const Modal = ({show = false, background, image, token}) => {
 
             </div>
 
-            <button disabled={disable} className={`${buttonStyles.form__button} ${buttonStyles["form__button--create"]}`}>
+            <button disabled={disabled} className={`${buttonStyles.form__button} ${buttonStyles["form__button--create"]}`}>
               { disabled ? "Guardando..." : "Guardar" }
             </button>
 
