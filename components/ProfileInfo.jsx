@@ -33,7 +33,7 @@ export const ProfileInfo = ({showButton=false, token }) => {
     setAlert({
       success: true,
       error: false,
-      message: "Se ha copiado el ID"
+      message: "Se ha copiado el link de perfil"
     })
 
   }
