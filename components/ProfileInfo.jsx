@@ -24,7 +24,7 @@ export const ProfileInfo = ({showButton=false, token }) => {
     e.preventDefault()
     
     const aux = document.createElement("input")
-    aux.setAttribute("value", user._id);
+    aux.setAttribute("value", `https://ask-me.social/visitprofile/${user._id}`);
     document.body.appendChild(aux);
     aux.select();
     document.execCommand("copy");
@@ -72,7 +72,7 @@ export const ProfileInfo = ({showButton=false, token }) => {
                 className={`${buttonStyles.form__button} ${buttonStyles["form__button--copy"]}`}
                 onClick={copyToClipboard}
               >
-                Copiar ID
+                Copiar link de mi perfil
               </button>
 
               
